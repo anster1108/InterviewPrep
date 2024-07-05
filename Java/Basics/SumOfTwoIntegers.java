@@ -1,6 +1,6 @@
 // Question : Write a program that gives us the result for adding 2 numbers
 
-import java.utils.*;
+import java.util.*;
 import java.io.*;
 import java.lang.*;
 

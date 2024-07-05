@@ -1,0 +1,22 @@
+Length on String [ st.length() ]
+	
+	String st = "5rfc731yqfbwiqu";
+	System.out.println(st.length());
+
+Character from a String [ st.charAt(value) ] [ Here value is a integer ]
+	String st = "Hello";
+	char c = st.charAt(3);
+	System.out.println(c); // l
+
+Character is a integer or not [ Character,isDigit(ch) // returns boolean ]
+	String st = "1n2b4k8g5";
+	char c = st.charAt(3);
+	System.out.println(Character.isDigit(c)); // O/P: true
+
+Get integer value of the Character [ int a = Character.getNumericValue(ch) ]
+	String st = "155319";
+	char ch = st.chatAt(5); // 9
+	if(Character.isDigit(ch)){
+		System.out.println(Character.getNumericValue(ch));
+	}
+
