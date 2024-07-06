@@ -4,7 +4,7 @@ import java.lang.*;
 import java.util.*;
 import java.io.*;
 
-class Main{
+class NumbersSwap{
 	public static void main(String[] args) {
 		int a = 10;
 		int b = 5;

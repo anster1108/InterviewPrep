@@ -4,7 +4,7 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 
-class Main{
+class CheckEvenOrOdd{
 	public static void main(String[] args) {
 		int a = 3478;
 		if((a % 2) == 0){

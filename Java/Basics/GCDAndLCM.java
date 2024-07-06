@@ -1,10 +1,8 @@
 // Question : Find the LCM , HCF[GCD] of two numbers
 
-import java.util.*;
 import java.lang.*;
-import java.io.*;
 
-class Main{
+class GCDAndLCM{
 	public static void main(String[] args) {
 		int a = 72;
 		int b = 144;
@@ -21,6 +19,9 @@ class Main{
         // Find the GCD using Euclidean Algorithm
         int gcd = findGCD(a, b);
 
+        // Find the GCD using Euclidean Algorithm
+        int gcdNew = findGCDNew(a, b);
+
         // LCM is calculated as (a * b) / GCD
         return (a * b) / gcd;
 	}
@@ -32,5 +33,15 @@ class Main{
 
 		return findGCD(b, a%b);
 	}
+
+	public static int findGCDNew(int a, int b){
+        int min = a > b ? b : a;
+        for (int i = min; i >= 1 ; i-- ) {
+            if(a%i == 0 && b%i==0){
+                return i;
+            }
+        }
+        return 1;
+    }
 
 }

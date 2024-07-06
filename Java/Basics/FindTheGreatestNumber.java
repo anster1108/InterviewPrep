@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-class Main{
+class FindTheGreatestNumber{
 	public static void main(String[] args) {
 		int a = 21;
 		int b = 9;

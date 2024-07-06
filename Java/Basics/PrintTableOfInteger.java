@@ -1,10 +1,8 @@
 // Question : Print the Table of the given Number
 
-import java.util.*;
-import java.io.*;
 import java.lang.*;
 
-class Main{
+class PrintTableOfInteger{
 	public static void main(String[] args) {
 		int tableNumber = 5;
 		for (int i = 1; i <= 10 ; i++ ) {

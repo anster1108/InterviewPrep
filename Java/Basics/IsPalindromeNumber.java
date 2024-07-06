@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-class Main{
+class IsPalindromeNumber{
 	public static void main(String[] args) {
 		int a = 121;
 		int temp = a;

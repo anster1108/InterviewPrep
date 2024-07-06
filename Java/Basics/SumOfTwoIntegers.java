@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-class Main{
+class SumOfTwoIntegers{
 	public static void main(String[] args) {
 		int a = 10;
 		int b = 5;

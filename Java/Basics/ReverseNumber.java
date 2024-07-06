@@ -1,10 +1,8 @@
 // Question : Reverse a number
 
-import java.util.*;
 import java.lang.*;
-import java.io.*;
 
-class Main{
+class ReverseNumber{
 	public static void main(String[] args){
 		int i = 12345;
 		int rev = 0;

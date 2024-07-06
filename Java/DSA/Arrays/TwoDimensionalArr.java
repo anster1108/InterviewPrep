@@ -2,9 +2,7 @@
 Question : Iterate over a 2D Array
 */
 
-import java.util.*;
-
-class Main{
+class TwoDimensionalArr{
 	public static void main(String[] args) {
 		int[][] a = new int[2][2];
 		int[][] arr = {{4,3}, {1,2}};
