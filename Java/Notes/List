@@ -1,1 +1,367 @@
-List
+~ List : It is an ordered collection of objects in which duplicate values can be stored. Since List preserves the insertion order, it allows positional access and insertion of elements. 
+
+
+~ List vs Set : Both the List interface and the Set interface inherits the Collection interface. However, there exists some differences between them.
+
+			List 												|				Set
+The List is an ordered sequence.								|		The Set is an unordered sequence.
+List allows duplicate elements	     							|		Set doesn’t allow duplicate elements.
+Elements by their position can be accessed.						|		Position access to elements is not allowed.
+Multiple null elements can be stored.							|		The null element can store only once.
+List implementations are ArrayList, LinkedList, Vector, Stack	|		Set implementations are HashSet, LinkedHashSet.
+
+~ List Declaration :
+	List<String> myList = new ArrayList<String>();
+
+~ add() : In order to add an element to the list.
+	Methods :
+		-> add(Object): This method is used to add an element at the end of the List.
+		-> add(int index, Object): This method is used to add an element at a specific index in the List
+
+	Eg. :
+		List<String> myList = new ArrayList<String>();
+		myList.add("Java");
+		myList.add("C");
+		myList.add("C++");
+
+		myList.add(1, "Go");
+		System.out.println(myList); // [ Java, Go, C, C++ ]
+
+~ addAll() : This method appends all of the elements in the specified collection to the end of this list, in the order that they are returned by the specified collection’s iterator.
+
+	Method : 
+		-> boolean addAll(Collection c)
+
+	Eg. :
+		// Initializing a list of type arraylist 
+        List<Integer> l = new ArrayList<>(); 
+        l.add(10); 
+        l.add(15); 
+        l.add(20); 
+        System.out.println(l); 
+  
+        // Initializing a collection to be appended to list 
+        ArrayList<Integer> arr = new ArrayList<Integer>(); 
+        arr.add(100); 
+        arr.add(200); 
+        arr.add(300); 
+        System.out.println(arr); 
+  
+        l.addAll(arr); 
+  
+        System.out.println(l); // 10 15 20 100 200 300
+
+~ Updating Element : After adding the elements, if we wish to change the element, it can be done using the set() method. Since List is indexed, the element which we wish to change is referenced by the index of the element. Therefore, this method takes an index and the updated element which needs to be inserted at that index. 
+
+	Method : set(int key, Object value);
+
+	Eg. :
+		List<String> myList = new ArrayList<String>();
+		myList.add("Java");
+		myList.add("C");
+		myList.add("C++");
+
+		myList.set(1, "Go");
+		System.out.println(myList); // [ Java, Go, C++ ]
+
+~ Searching for elements : Searching for elements in the List interface is a common operation in Java programming. The List interface provides several methods to search for elements, such as the indexOf(), lastIndexOf() methods.
+
+	Methods :
+		-> indexOf(element): Returns the index of the first occurrence of the specified element in the list, or -1 if the element is not found      
+		-> lastIndexOf(element): Returns the index of the last occurrence of the specified element in the list, or -1 if the element is not found
+
+	Eg. :
+		List<Integer> numbers = new ArrayList<>();
+
+        // add some integers to the list
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(2);
+
+        // use indexOf() to find the first occurrence of an
+        // element in the list
+        int index = numbers.indexOf(2);
+        System.out.println("The first occurrence of 2 is at index "+ index); // The first occurrence of 2 is at index 1
+
+        // use lastIndexOf() to find the last occurrence of
+        // an element in the list
+        int lastIndex = numbers.lastIndexOf(2);
+        System.out.println("The last occurrence of 2 is at index "+ lastIndex); // The last occurrence of 2 is at index 3
+
+~ Removing Elements : In order to remove an element from a list, we can use the remove() method. This method is overloaded to perform multiple operations based on different parameters.
+
+	Methods :
+		-> remove(Object): This method is used to simply remove an object from the List. If there are multiple such objects, then the first occurrence of the object is removed.
+		
+		-> remove(int index): Since a List is indexed, this method takes an integer value which simply removes the element present at that specific index in the List. After removing the element, all the elements are moved to the left to fill the space and the indices of the objects are updated.
+
+	Eg. :
+		List<String> al = new ArrayList<>();
+
+        // Adding elements to the object
+        // Custom inputs
+        al.add("Java");
+        al.add("C++");
+
+        // Adding For at 1st indexes
+        al.add(1, "Go");
+
+        // Print the initialArrayList
+        System.out.println("Initial ArrayList " + al); // Initial ArrayList [Java, Go, C++]
+
+        // Now remove element from the above list
+        // present at 1st index
+        al.remove(1);
+
+        // Print the List after removal of element
+        System.out.println("After the Index Removal " + al); // After the Index Removal [Java, C++]
+
+        // Now remove the current object from the updated
+        // List
+        al.remove("Java");
+
+        // Finally print the updated List now
+        System.out.println("After the Object Removal "+ al); // After the Object Removal [C++]
+
+Remove if : The removeIf() method removes all elements from this list for which a condition is satisfied. The condition can be defined by the return value of a lambda expression that is compatible with the test() method of Java's Predicate interface.
+
+		Method : public boolean removeIf(Predicate condition)
+
+		Eg. : This removes all the even numbers
+			ArrayList<Integer> numbers = new ArrayList<Integer>();
+		    numbers.add(5);
+		    numbers.add(9);
+		    numbers.add(8);
+		    numbers.add(6);
+		    numbers.add(1);
+		    numbers.removeIf( n -> n % 2 == 0 );
+		    System.out.println(numbers); // 5 9 1
+
+
+~ Accessing Elements : In order to access an element in the list, we can use the get() method, which returns the element at the specified index
+
+	Method : 
+		-> get(int index): This method returns the element at the specified index in the list.
+
+	Eg. :
+		List<String> al = new ArrayList<>();
+
+        // Adding elements to the object
+        // Custom inputs
+        al.add("Java");
+        al.add("C++");
+
+
+        String first = al.get(0);
+        String second = al.get(1);
+
+        System.out.println("first : "+first);
+        System.out.println("second : "+second);
+
+
+~ Checking if an element is present in the List
+	
+	Method : 
+		-> contains(Object): This method takes a single parameter, the object to be checked if it is present in the list.
+		-> containsAll(Collection col): The containsAll() method of List interface in Java is used to check if this List contains all of the elements in the specified Collection. So basically it is used to check if a List contains a set of elements or not.
+
+	Eg. :
+		List<String> al = new ArrayList<>();
+
+        // Adding elements to the object
+        // Custom inputs
+        al.add("Java");
+        al.add("C++");
+
+        if(al.contains("Go")){
+        	System.out.println("Go is present in the list");
+        }else{
+        	System.out.println("Go is not present in the list");
+        }	
+
+        List<String> tempList = new ArrayList<>();
+        tempList.add("Java");
+
+        System.out.println("Are all the contents equal? "+ al.containsAll(tempList));  // Are all the contents equal? true
+
+~ size : [ int list.size() ]
+	Eg. : 
+		List<String> al = new ArrayList<>();
+
+        al.add("Java");
+        al.add("C++");
+		System.out.println(al.size()); // 2
+
+~ Iteration over the List :
+	Eg. : 
+		// Creating an empty Arraylist of string type
+        List<String> al = new ArrayList<>();
+
+        // Adding elements to above object of ArrayList
+        al.add("Java");
+        al.add("Go");
+
+        // Adding element at specified position
+        // inside list object
+        al.add(1, "C++");
+
+        // Using  for loop for iteration
+        for (int i = 0; i < al.size(); i++) {
+
+            // Using get() method to
+            // access particular element
+            System.out.print(al.get(i) + " "); // Java C++ Go
+        }
+
+        // New line for better readability
+        System.out.println();
+
+        // Using for-each loop for iteration
+        for (String str : al){
+            // Printing all the elements
+            // which was inside object
+            System.out.print(str + " "); // Java C++ Go
+    	}
+
+
+~ clear() : The clear() method of List interface in Java is used to remove all of the elements from the List container. This method does not deleted the List container, instead it just removes all of the elements from the List. 
+	Method : public void clear()
+	
+	Eg. :
+		List<String> list = new ArrayList<String>(5);
+ 
+        // use add() method to initially
+        // add elements in the list
+        list.add("Go");
+        list.add("Java");
+        list.add("C++");
+ 
+        // Remove all elements from the List
+        list.clear();
+ 
+        // print the List
+        System.out.println(list); // []
+
+
+~ equals() : This method is used to compare two lists. It compares the lists as, both lists should have the same size, and all corresponding pairs of elements in the two lists are equal.
+
+	Method : boolean equals(Object o)
+
+	Eg. :
+		// Initializing a list of type Linkedlist 
+        List<Integer> l = new LinkedList<>(); 
+        l.add(10); 
+        l.add(15); 
+        l.add(20); 
+        System.out.println(l); 
+  
+        // Initializing another list 
+        List<Integer> l2 = new ArrayList<Integer>(); 
+        l2.add(10); 
+        l2.add(15); 
+        l2.add(20); 
+        System.out.println(l2); 
+  
+        if (l.equals(l2)) 
+            System.out.println("Equal"); 
+        else
+            System.out.println("Not equal"); 
+
+    O/P :
+    	[10, 15, 20]
+		[10, 15, 20]
+		Equal
+
+~ isEmpty : [ boolean list.isEmpty() ]
+
+	Eg. :
+		List<Integer> arr = new ArrayList<Integer>(10); 
+  
+        // check if the list is empty or not 
+        // using isEmpty() function 
+        boolean ans = arr.isEmpty(); 
+        if (ans == true) 
+            System.out.println("The List is empty"); 
+        else
+            System.out.println("The List is not empty"); 
+  		
+
+  		O/P: The List is empty
+
+~ replaceAll : The replaceAll() method replaces every item in a list with the result of performing an operation on the item. The operation can be defined by a lambda expression that is compatible with Java's UnaryOperator interface.
+
+	Method : public void replaceAll(UnaryOperator operator)
+
+	Eg. : 
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
+	    numbers.add(5);
+	    numbers.add(9);
+	    numbers.add(8);
+	    numbers.add(6);
+	    numbers.add(1);
+	    numbers.replaceAll( n -> n + 1 );
+	    System.out.println(numbers); // 6 10 9 7 2
+
+~ toArray() : The toArray() method returns an array containing all of the items in the list.
+
+	If no argument is passed then the type of the returned array will be Object. If an array is passed as an argument then this method will return an array with the same data type.
+
+	If the array in the argument is large enough to contain all of the list items then this method will return the argument itself after writing the list items into it.
+
+
+	Method : public Object[] toArray()
+
+	Eg. :
+		ArrayList cars = new ArrayList();
+	    cars.add("Volvo");
+	    cars.add("BMW");
+	    cars.add("Ford");
+	    cars.add("Mazda");
+	    
+	    Object[] carsArray = cars.toArray();
+	    
+	    for(Object item : carsArray) {
+	      System.out.println(item);
+	    }
+
+~ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

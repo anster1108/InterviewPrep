@@ -1,22 +1,189 @@
-Length on String [ st.length() ]
+~ Declaration :
+	String st = "this is my string";
+
+	String st = new String("this is my string");
+
+~ Length on String [ int st.length() ]
 	
 	String st = "5rfc731yqfbwiqu";
 	System.out.println(st.length());
 
-Character from a String [ st.charAt(value) ] [ Here value is a integer ]
+~ Character from a String [ char st.charAt(value) ] [ Here value is a integer ]
 	String st = "Hello";
 	char c = st.charAt(3);
 	System.out.println(c); // l
 
-Character is a integer or not [ Character,isDigit(ch) // returns boolean ]
+~ Character is a integer or not [ Character,isDigit(ch) // returns boolean ]
 	String st = "1n2b4k8g5";
 	char c = st.charAt(3);
 	System.out.println(Character.isDigit(c)); // O/P: true
 
-Get integer value of the Character [ int a = Character.getNumericValue(ch) ]
+~ Get integer value of the Character [ int a = Character.getNumericValue(ch) ]
 	String st = "155319";
 	char ch = st.chatAt(5); // 9
 	if(Character.isDigit(ch)){
 		System.out.println(Character.getNumericValue(ch));
 	}
+
+~ Check if the given character is an Alphabet [ Character.isLetter("a") ]
+	-> it returns boolean in response
+
+	-> Code
+		if(Character.iSLetter("a")){
+			System.out.println("Given character is an alphabet");
+		}else{
+			System.out.println("Given character is not an alphabet");
+		}
+
+~ Get the substring from the given string [ String substring(int i) ] 
+	-> Return the substring from the ith  index character to end.
+		
+		"this is my string".substring(3); // returns “s is my string”
+
+~ Get a substring from the given range [ String substring(int i, int j) ] 
+	-> Returns the substring from i to j-1 index.
+		"this is my string".substring(2, 6); // returns “is i”
+
+~ Concat two Strings [ String s2.concat(s2) ]
+	-> Concatenates specified string to the end of this string.
+		String s1 = ”This is”;
+		String s2 = ” my string”;
+		String output = s1.concat(s2); // returns “this is my string”
+
+~ Return the index from where the matching string is found [ int s.indexOf(“Share”); ]
+
+	Returns the index within the string of the first occurrence of the specified string.
+
+	If String s is not present in input string then -1 is returned as the default value.
+
+	Eg. : 
+		1.   String s = ”Learn Share Learn”;
+		      int output = s.indexOf(“Share”); // returns 6
+		2. String s = "Learn Share Learn"
+		    int output = s.indexOf(“Play”);  // return -1
+
+~ Return the index of the occuring substring after an index [ int s.indexOf('ea', 3); ]
+	Returns the index within the string of the first occurrence of the specified string, starting at the specified index.
+
+	Eg. :
+		String s = ”Learn Share Learn”;
+ 		int output = s.indexOf("ea",3);// returns 13
+
+~ Find the last occuring of the given substring [ int s.lastIndexOf("ea") ]
+	Returns the index within the string of the last occurrence of the specified string.
+
+	If String s is not present in input string then -1 is returned as the default value.
+
+	Eg. :
+		1. String s = ”Learn Share Learn”;
+		   int output = s.lastIndexOf("a"); // returns 14
+		2. String s = "Learn Share Learn"
+		   int output = s.indexOf(“Play”);  // return -1
+
+~ Equals [ boolesn "".equals("") ]
+	Compares this string to the specified object.
+
+	Eg. :
+		Boolean out = “Play”.equals(“Play”); // returns true
+		Boolean out = “play”.equals(“Play”); // returns false
+
+~ equalsIgnoreCase [ boolesn "".equalsIgnoreCase("") ]
+	Compares string to another string, ignoring case considerations.
+
+	Eg. :
+		Boolean out = “Play”.equalsIgnoreCase(“Play”); // returns true
+		Boolean out = “play”.equalsIgnoreCase(“Play”); // returns true
+
+~ CompareTo [ int s1.compareTo(s2) ]
+	Compares two string lexicographically.
+
+	Eg. :
+		int out = s1.compareTo(s2);  
+		// where s1 and s2 are
+		// strings to be compared
+		This returns difference s1-s2. If :
+			out < 0  // s1 comes before s2
+			out = 0  // s1 and s2 are equal.
+			out > 0   // s1 comes after s2.
+
+~ CompareToIgnoreCase [ int s1.CompareToIgnoreCase(s2) ]
+	Compares two string lexicographically, ignoring case considerations.
+
+	Eg. :
+		int out = s1.compareToIgnoreCase(s2);  
+		// where s1 and s2 are
+		// strings to be compared
+		This returns difference s1-s2. If :
+			out < 0  // s1 comes before s2
+			out = 0  // s1 and s2 are equal.
+			out > 0   // s1 comes after s2.
+
+	Note: In this case, it will not consider case of a letter (it will ignore whether it is uppercase or lowercase).
+
+~ To Lowercase [ String s1.toLowerCase() ]
+	Converts all the characters in the String to lower case.
+
+	Eg. :
+		String word1 = “HeLLo”;
+		String word3 = word1.toLowerCase(); // returns “hello"
+
+~ To UpperCase [ String s1.toUpperCase() ]
+	Converts all the characters in the String to upper case.
+
+	Eg. :
+		String word1 = “HeLLo”;
+		String word3 = word1.toUpperCase(); // returns HELLO"
+
+~ Trim the string [ String s1.trim() ]
+	Returns the copy of the String, by removing whitespaces at both ends. It does not affect whitespaces in the middle.
+
+	Eg. :
+		String word1 = “ Learn Share Learn “;
+		String word2 = word1.trim(); // returns “Learn Share Learn”
+
+~ Replace a string with another [String s1.replace(old char, new char)]
+	Returns new string by replacing all occurrences of oldChar with newChar.
+
+	Eg. :
+		String s1 = “dreamteam“;
+		String s2 = s1.replace(‘d’ ,’t’); // return “teamteam”
+
+	Note: s1 is still “dreamteam“ and s2 is geeksgorgeeks
+
+~ Contains a substring or not [ boolean s1.contains("") ]
+	Returns true if string contains contains the given string.
+
+	Eg. :
+		String s1="dreamteam";
+		String s2="dream";
+		s1.contains(s2) // return true
+
+~ Convert String to CharArray [char[]  s.toCharArray()]
+	
+	Eg. :
+		String s1="dreamteam";
+		char []ch=s1.toCharArray();  // returns [ 'd', 'r' , 'e' , 'a' , 'm' , 't', 'e', 'a' , 'm']
+
+~ StartsWith : Return true if string starts with this prefix [ boolean s1.startsWith(s2) ]
+	
+	Eg. :
+		String s1="dreamteam";
+		String s2="dream";
+		s1.startsWith(s2) // return true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

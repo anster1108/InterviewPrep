@@ -1,0 +1,217 @@
+~ HashMap : HashMap is a data structure that uses a hash function to map identifying values, known as keys, to their associated values. It contains “key-value” pairs and allows retrieving value by key.
+
+
+~ Declaration
+	HashMap<String, String> map = new HashMap<String, String>();
+
+~ Adding value to the map (public V put(K key,V value)) [ map.put(key, value) ]
+	java.util.HashMap.put() plays role in associating the specified value with the specified key in this map. If the map previously contained a mapping for the key, the old value is replaced.
+
+	Eg. :
+		HashMap<String, String> newMp = new HashMap<>();
+		newMp.put("Language", "Java");
+
+~ PutAll : The putAll() method writes all of the entries from another map into the map. If entries exist with the same keys then the values of these entries will be changed.
+
+	Eg. :
+		HashMap<String, String> capitalCities = new HashMap<String, String>();
+		capitalCities.put("England", "London");
+	    capitalCities.put("Germany", "Berlin");
+	    capitalCities.put("Norway", "Oslo");
+
+	    HashMap<String, String> cities = new HashMap<String, String>();
+	    cities.put("Canada", "Ottawa");
+	    cities.put("Japan", "Tokyo");
+
+	    capitalCities.putall(cities);
+	    System.out.println(capitalCities);
+
+~ PutifAbsent : The putIfAbsent() method writes an entry into the map. If an entry with the same key already exists and its value is not null then the map is not changed.
+
+		Eg. :
+		HashMap<String, String> capitalCities = new HashMap<String, String>();
+		capitalCities.put("England", "London");
+	    capitalCities.put("Germany", "Berlin");
+	    capitalCities.put("Norway", "Oslo");
+
+	    // Add new entries only if they don't exist
+	    capitalCities.putIfAbsent("Canada", "Ottawa");
+    	capitalCities.putIfAbsent("England", "Cambridge");
+
+
+~ Getting value from the map (public V get(Object key)) [ map.get(key) ]
+	java.util.HashMap.get()method returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+
+	Eg. :
+		HashMap<String, String> newMp = new HashMap<>();
+		newMp.put("Language", "Java");
+
+		newMp.get("Language");
+
+~ getOrDefault : [ public V get(Object key, V def) ]
+	The getOrDefault() method returns the value of the entry in the map which has a specified key. If the entry does not exist then the value of the second parameter is returned.
+
+	Eg. :
+		HashMap<String, String> cities = new HashMap<>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+		cities.put("Norway", "Oslo");
+
+		String val = cities.getOrDefaul("Delhi", "Unknown");
+		System.out.println("val : "+ val);
+
+~ replace : The replace() method writes a new value to an existing entry in the map. The entry can be specified by its key, or by both its key and value.
+	
+	Eg. :
+		HashMap<String, String> cities = new HashMap<>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+		cities.put("Norway", "Oslo");
+
+		cities.replace("England", "London");
+    	cities.replace("Canada", "Ottawa"); // this will not be added as the key doesn't exist
+
+~ replaceAll : The replaceAll() method replaces the value of every entry in the map with the result of an operation using the entry's key and value. The operation can be defined by a lambda expression that is compatible with the apply() method of Java's BiFunction interface.
+
+	Eg. : 
+		Hashmap<String, String> cities = new Hashmap<String, String>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+		cities.put("Norway", "Oslo");
+
+		cities.replaceAll((k , v) -> "The capital of " + k + " is " + v);
+		System.out.println(cities);
+
+
+
+~ isEmpty : [ boolean map.isEmpty() ]
+	java.util.HashMap.isEmpty() method returns true if the map contains no key-value mappings. 
+
+	Return: true if this map contains no key-value mappings
+
+	Eg. : 
+		HashMap<String, String> newMp = new HashMap<>();
+		if(map.isEmpty()){
+			System.out.println("The given map is empty");
+		}
+
+~ size : [ int map.size() ]
+	Eg. : 
+		HashMap<String, String> newMp = new HashMap<>();
+		newMp.put("Language", "Java");
+		System.out.println(newMp.size()); // 1
+
+~ remove : [ V map.remove(key), boolean map.remove(key, value) ]
+	The remove() method removes an entry with a specified key from the map. If a value is provided then the entry will only be removed if its value matches the specified value
+
+	When a value is specified, it returns true if an entry was deleted and false otherwise. If no value is specified then it returns the value of the removed entry, or null if an entry with the specified key does not exist.
+
+	Eg. :
+		HashMap<String, String> capitalCities = new HashMap<String, String>();
+
+	    capitalCities.put("England", "London");
+	    capitalCities.put("Germany", "Berlin");
+	    capitalCities.put("Norway", "Oslo");
+	    capitalCities.put("USA", "Washington DC");
+	    
+	    capitalCities.remove("USA");
+	    capitalCities.remove("Germany", "Berlin");
+
+~ containsKey : [ boolean map.containsKey(key) ]
+	java.util.HashMap.containsKey() returns true if the HashMap contains the specified key, otherwise it returns false.
+
+	Eg. :
+		HashMap<String, String> capitalCities = new HashMap<String, String>();
+
+	    capitalCities.put("England", "London");
+	    capitalCities.put("Germany", "Berlin");
+	    capitalCities.put("Norway", "Oslo");
+	    capitalCities.put("USA", "Washington DC");
+
+	    if(capitalCities.containsKey("USA")){
+	    	System.out.println("Key is present");
+	    }
+
+~ containsValue : [ boolean map.containsValue(value) ]
+	java.util.HashMap.containsValue() returns true if the HashMap contains the specified value, otherwise it returns false.
+
+	Eg. :
+		HashMap<String, String> capitalCities = new HashMap<String, String>();
+
+	    capitalCities.put("England", "London");
+	    capitalCities.put("Germany", "Berlin");
+	    capitalCities.put("Norway", "Oslo");
+	    capitalCities.put("USA", "Washington DC");
+
+	    if(capitalCities.containsValue("London")){
+	    	System.out.println("Value is present");
+	    }
+
+~ clear : [ void mp.clear() ]
+	java.util.HashMap.clear() removes all the key-value pairs from the HashMap. 
+
+	Eg. :
+		HashMap<String, String> cities = new HashMap<String, String>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+
+		cities.clear();
+
+		if(cities.isEmpty()){
+			System.out.println("The given map is empty");
+		}
+
+~ keySet : [ Set<K>  mp.keySet() ]
+	java.util.HashMap.keySet() returns a Set containing all the keys in the HashMap.
+
+	Eg. :
+		HashMap<String, String> cities = new HashMap<String, String>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+
+		Set<String> keySet = cities.keySet();
+        System.out.println("Key Set: " + keySet); // Key Set: [England, Germany]
+
+
+~ values : [ Collection<V>  mp.values() ]
+	java.util.HashMap.values() returns a Collection containing all the values in the HashMap.
+
+	Eg. :
+		HashMap<String, String> cities = new HashMap<String, String>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+
+		Collection<String> values = cities.values();
+        System.out.println("Values: " + values); // Values: [London, Berlin]
+
+~ entrySet : [ Set<Map.Entry<K,V>> mp.entrySet() ]
+	java.util.HashMap.entrySet() returns a Set containing all the key-value pairs in the HashMap as Map.Entry objects. 
+
+	Eg. :
+		HashMap<String, String> cities = new HashMap<String, String>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+
+		Set<Map.Entry<String, String> > entrySet = cities.entrySet();
+        System.out.println("Entry Set: " + entrySet); // Entry Set: [England=London, Germany=Berlin
+
+
+~ For Each : Use the forEach() method to print every entry in the map
+
+	Eg. :
+		HashMap<String, String> cities = new HashMap<String, String>();
+		cities.put("England", "London");
+		cities.put("Germany", "Berlin");
+
+		cities.forEach( (k, v) -> { System.out.println(k + " -> " + v); } );
+
+
+
+
+
+
+
+
+
+
+
