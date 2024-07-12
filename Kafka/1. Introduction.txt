@@ -1,4 +1,0 @@
-Kafka :  Kafka is like a communication system that helps different parts of a System to exchange data by Publishing & Subscribing to topics.
-
-
-
