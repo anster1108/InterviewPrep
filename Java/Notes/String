@@ -3,6 +3,8 @@
 
 	String st = new String("this is my string");
 
+~ In java strings are imutable , if we add any change to the string then the older address is not updated, new address is created.
+
 ~ Length on String [ int st.length() ]
 	
 	String st = "5rfc731yqfbwiqu";
@@ -50,6 +52,15 @@
 		String s2 = ” my string”;
 		String output = s1.concat(s2); // returns “this is my string”
 
+~ cooncat using "+"
+	String s1 = ”This is”;
+	String s2 = ” my string”;
+	String output = s1 + " " + s2; // returns “this is my string”
+
+	String s1 = ”This is”;
+	s1 += ” my string”;
+	String output = s1; // returns “this is my string”
+
 ~ Return the index from where the matching string is found [ int s.indexOf(“Share”); ]
 
 	Returns the index within the string of the first occurrence of the specified string.
@@ -80,7 +91,7 @@
 		2. String s = "Learn Share Learn"
 		   int output = s.indexOf(“Play”);  // return -1
 
-~ Equals [ boolesn "".equals("") ]
+~ Equals [ boolean "".equals("") ]
 	Compares this string to the specified object.
 
 	Eg. :

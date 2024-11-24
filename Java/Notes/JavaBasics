@@ -1,0 +1,263 @@
+Input and Output in java :
+	// using inbuilt scanner class in utils package // import java.util.Scanner;
+	Scanner sc = new Scanner(System.in);
+	int num = sc.nextInt();
+    System.out.println(num);
+
+
+    // int num = sc.nextInt(); // 100
+    // double num = sc.nextDouble(); // 100
+    //String name = sc.nextLine(); // Shrey Khetrapal
+    
+
+    - to take the next word || number from the input space we use next
+    
+    String firstName = sc.next();
+    String lastName = sc.next();
+    System.out.println(firstName+" "+lastName); // input : Shrey Khetrapal & output : Shrey Khetrapal
+
+
+Constant in Java :
+
+	final int a = 10 ;
+	a += 15; // this will gives an error
+
+
+Array : 
+
+    - Declaration, accessing 
+
+        int[] arr = new int[5];
+        arr[0] = 1;
+        arr[1] = 2;
+        arr[2] = 3;
+        arr[3] = 4;
+        arr[4] = 5;
+
+        // or we can also do
+        int[] arr = {1,2,3,4,5,6};
+
+        System.out.println(arr[3]); // 4
+
+    - Length
+
+        System.out.println(arr.length); // 5
+
+    - 2D array
+        int[][] arr = { {1,2}, {3,4}, {5,6} };
+
+        int[] firstIndexArr = arr[0]; // {1, 2}
+
+        System.out.println(arr[0][1]); // 2
+
+Conditional Statements :
+
+    - If else
+
+        Q : Print teen if the input age is less than 18 else adult
+
+        Scanner sc = new Scanner(System.in);
+        int age = sc.nextInt();
+        if (age > 18) {
+            System.out.println("Adult");
+        }else{
+            System.out.println("Teen");
+        }
+        sc.close();
+
+    - if else if
+
+        Q : Given marks of a student, print on the screen
+
+            Grade A if marks >= 90
+            Grade B if marks >= 70
+            Grade C if marks >= 50
+            Grade D if marks >= 35
+            Fail, otherwise.
+
+        Scanner sc = new Scanner(System.in);
+        int marks = sc.nextInt();
+        if (marks >= 90) {
+            System.out.println("Grade A");
+        }else if (marks >= 70) {
+            System.out.println("Grade B");
+        }else if (marks >= 50) {
+            System.out.println("Grade C");
+        }else if (marks >= 35) {
+            System.out.println("Grade D");
+        }else{
+            System.out.println("Fail");
+        }
+
+    - nested If else
+
+         /*
+            You are given 3 intyegers a, b, c
+            print which of these integer is the largest
+            If two or more integers are equal and are the largest, 
+            the program should indicate that as well
+         */
+        
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        if (a > b && a > c) {
+            System.out.println("a is largest");
+        }else if (b > a && b > c) {
+            System.out.println("b is largest");
+        }else if (c > a && c > b) {
+            System.out.println("c is largest");
+        }else if (a == b && a != c) {
+            if(a > c){
+                System.out.println("a , b is largest");
+            }else{
+                System.out.println("c is largest");
+            }
+        }else if (b == c && a != c) {
+            if(b > a){
+                System.out.println("b, c is largest");
+            }else{
+                System.out.println("a is largest");
+            }
+        }else if (a == c && a != b) {
+            if(a > b){
+                System.out.println("a , c is largest");
+            }else{
+                System.out.println("b is largest");
+            }
+        }else{
+            System.out.println("a, b, c is largest");
+        }
+        sc.close();
+
+    - switch
+
+        /*
+            Given the day number print which day it is of the week,
+            assume week start on Monday and ends on Sunday
+        */
+
+        Scanner sc = new Scanner(System.in);
+        int dayNumber = sc.nextInt();
+        switch(dayNumber) {
+            case 1 :
+                System.out.println("Monday");
+                break;
+            case 2 :
+                System.out.println("Tuesday");
+                break;
+            case 3 :
+                System.out.println("Wednesday");
+                break;
+            case 4 :
+                System.out.println("Thursday");
+                break;
+            case 5 :
+                System.out.println("Friday");
+                break;
+            case 6 :
+                System.out.println("Saturday");
+                break;
+            case 7 :
+                System.out.println("Sunday");    
+                break;
+            default:
+                System.out.println("Default");
+        }
+        sc.close();
+
+Loops
+
+    -- for loop
+        
+        for(int i = 1; i <=10; i++){
+            System.out.println(i);
+        }
+
+        /*
+            Fill an array by taking input of size and the elements of the array and print it
+        */
+
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        int[] arr = new int[size];
+        for(int i = 0; i < size; i++){
+            arr[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < size; i++) {
+            System.out.println(arr[i]);
+        }
+
+    -- while loop
+
+        int a = 5;
+        while(a <= 10 ){
+            System.out.println(a);
+            a++;
+        }
+
+
+    -- do while loops (keep taking input till the user enters positive number)
+        Scanner sc = new Scanner(System.in);        
+        do{
+            int num = sc.nextInt();
+            System.out.println(num);
+        }while(num > 0);
+
+
+Exception Handling (try-catch)
+
+    try{
+        int a = 10;
+        int b = 0;
+        int c = a / b;
+    }catch(Exception e){
+        System.out.println(e); // java.lang.ArithmeticException: / by zero
+    }finally{
+        System.out.println("Finally block executed");
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
