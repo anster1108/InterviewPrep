@@ -30,33 +30,53 @@ people.add(new Person("Alice", 25));
 System.out.println(people); // Output: [John (30), Alice (25)]
 
 
-2. Collections
+2. Collections [ Interface ]
 
-A. List : A List is an ordered collection that allows duplicate elements. It provides positional access and is commonly used in scenarios where order matters.
+A. List [ Interface ]: A List is an ordered collection that allows duplicate elements. It provides positional access and is commonly used in scenarios where order matters.
 
- i. ArrayList : An ArrayList is a resizable array implementation of the List interface. It offers fast random access but slower insertions and deletions as elements need to be shifted.
+ i. ArrayList [ class ] : An ArrayList is a resizable array implementation of the List interface. It offers fast random access but slower insertions and deletions as elements need to be shifted.
 
  	List<String> arrayList = new ArrayList<>();
 	arrayList.add("Apple");
 	arrayList.add("Banana");
 	System.out.println(arrayList); // Output: [Apple, Banana]
+	System.out.println(arrayList.size()); // Output: 2
+	System.out.println(arrayList.get(1)); // Output: Banana
+	System.out.println(arrayList.remove(1)); // Output: Banana
+	System.out.println(arrayList); // Output: [Apple, Banana]
+	arrayList.add(0, "Banana"); // add Banana at index 0 of the list
+	System.out.println(arrayList); // Output: [Banana, Apple]
+	arraylist.clear(); // clears entire list
+	arraylist.contains("Apple") // true
+	arraylist.contains("Appleee") // false
 
-
- ii. LinkedList : LinkedList is a doubly linked list implementation of the List interface. It provides fast insertions and deletions but slower random access compared to ArrayList.
+ ii. LinkedList [ class ] : LinkedList is a doubly linked list implementation of the List interface. It provides fast insertions and deletions but slower random access compared to ArrayList.
 
 	List<String> linkedList = new LinkedList<>();
 	linkedList.add("Cat");
 	linkedList.add("Dog");
 	System.out.println(linkedList); // Output: [Cat, Dog]
+	linkedList.addFirst("Lion"); //  [Lion, Cat, Dog]
+	linkedList.addLast("mouse"); // [Lion, Cat, Dog, mouse]
+	linkedList.removeFirst(); // [Cat, Dog, mouse]
+	linkedList.removeLast(); // [Cat, Dog]
+	linkedList.getFirst(); // Cat
+	linkedList.getLast(); // Dog
+	linkedList.size(); // 2
+	linkedList.contains("Dog"); // true
 
- iii. Stack : Stack is a subclass of Vector that implements a last-in, first-out (LIFO) stack of elements. It provides typical stack operations like push() and pop().
+
+ iii. Stack [ class ] : Stack is a subclass of Vector that implements a last-in, first-out (LIFO) stack of elements. It provides typical stack operations like push() and pop().
 
 	Stack<Integer> stack = new Stack<>();
 	stack.push(1);
 	stack.push(2);
-	System.out.println(stack.pop()); // Output: 2
+	System.out.println(stack.peek()); // Output: 2 // it gives the last element of the stack // 
+	System.out.println(stack.pop()); // Output: 2 // It removes the last inserted element
+	System.out.println(stack.size()); // Output: 1
+	System.out.println(stack.isEmpty()); // Output: false
 
- iv. Vector : Vector is similar to ArrayList but is synchronized, meaning it is thread-safe for multi-threaded environments.
+ iv. Vector [ class ] : Vector is similar to ArrayList but is synchronized, meaning it is thread-safe for multi-threaded environments.
 
 	Vector<String> vector = new Vector<>();
 	vector.add("Red");
@@ -64,57 +84,101 @@ A. List : A List is an ordered collection that allows duplicate elements. It pro
 	System.out.println(vector); // Output: [Red, Blue]
 
 
-B. Set : A Set is a collection that does not allow duplicate elements. It is useful when you need to store unique elements.
+B. Set [ Interface ] : A Set is a collection that does not allow duplicate elements. It is useful when you need to store unique elements.
 
- i. HashSet : HashSet is an implementation of the Set interface that uses a hash table for storage. It provides constant time performance for basic operations like add and remove.
+ i. HashSet [ class ] : HashSet is an implementation of the Set interface that uses a hash table for storage. It provides constant time performance for basic operations like add and remove.
 
 	Set<String> hashSet = new HashSet<>();
 	hashSet.add("One");
 	hashSet.add("Two");
 	System.out.println(hashSet); // Output: [One, Two]
+	hashSet.remove("Two");
+	System.out.println(hashSet); // Output: [One]
+	hashSet.add("Two");
 
- ii. TreeSet : TreeSet is an implementation of the Set interface that stores elements in a sorted order using a red-black tree. The elements are sorted based on their natural ordering or a custom comparator.
+	// iterate the values
+	for(String st: hashSet){
+		System.out.println(st);
+	}
+
+	// here in java var is Auto Converted and taken as String
+	for(var st: hashSet){
+		System.out.println(st);
+	}
+
+ ii. TreeSet [ class ] : TreeSet is an implementation of the Set interface that stores elements in a sorted order using a red-black tree. The elements are sorted based on their natural ordering or a custom comparator.
 
 	Set<String> treeSet = new TreeSet<>();
 	treeSet.add("Cat");
 	treeSet.add("Dog");
 	System.out.println(treeSet); // Output: [Cat, Dog]
 
-C. Queue : A Queue is a collection that follows the first-in, first-out (FIFO) principle. It is commonly used in scenarios where elements are processed in the order they are added.
+	Note : as this is soreted, it takes O(log N) of time 
+
+C. Queue [ Interface ] : A Queue is a collection that follows the first-in, first-out (FIFO) principle. It is commonly used in scenarios where elements are processed in the order they are added.
 
  i. ArrayQueue : Java doesn’t have a direct ArrayQueue, but you can implement a queue using an ArrayList. Alternatively, you can use LinkedList as a queue.
 
- ii. LinkedList (as Queue) : LinkedList can be used as a queue since it implements both the List and Queue interfaces.
+ ii. ArrayDeque : it a two ended stuff, you can insert/offer from first as weel as from last
+
+        Queue<Integer> arrDq = new ArrayDeque<>();
+        arrDq.offer(1);
+        arrDq.offer(5);
+        arrDq.offer(2);
+        arrDq.offer(18);
+        arrDq.offer(6);
+        System.out.println(arrDq); // [1, 5, 2, 18, 6]
+        System.out.println(arrDq.peek()); // 1
+        arrDq.poll(); // removes the first inserted element // 1
+        System.out.println(arrDq); // [5, 2, 18, 6]
+        System.out.println(arrDq.peek()); // 5
+        System.out.println(arrDq.size()); // 4
+
+ iii. LinkedList (as Queue) : LinkedList can be used as a queue since it implements both the List and Queue interfaces.
 
 	Queue<String> queue = new LinkedList<>();
 	queue.add("First");
 	queue.add("Second");
 	System.out.println(queue.poll()); // Output: First
 
- iii. PriorityQueue : PriorityQueue is a queue that orders elements according to their natural ordering or a custom comparator. Elements with higher priority are processed first.
+ iv. PriorityQueue [ Min Heap ] : PriorityQueue is a queue that orders elements according to their natural ordering or a custom comparator. Elements with higher priority are processed first.
+
+ 	- If wee peek in priority queue we will get the smallest element
 
 	PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
 	priorityQueue.add(10);
 	priorityQueue.add(5);
 	System.out.println(priorityQueue.poll()); // Output: 5
+	priorityQueue.add(1);
+	priorityQueue.add(0);
+	priorityQueue.add(50);
+	System.out.println(priorityQueue.peek()); // Output: 0
 
 
 3. Map : A Map is a collection that maps keys to values. It does not allow duplicate keys, but multiple keys can map to the same value.
 
 
  a. HashMap : HashMap is an implementation of the Map interface that uses a hash table for storage. It allows null keys and values.	
-
+ 
 	Map<String, Integer> hashMap = new HashMap<>();
 	hashMap.put("Apple", 10);
 	hashMap.put("Banana", 20);
 	System.out.println(hashMap); // Output: {Apple=10, Banana=20}
+	hashMap.remove("Apple");
+	System.out.println(hashMap); // Output: {Banana=20}
+	System.out.println(hashMap.get("Banana")); // null
+
  
  b. TreeMap : TreeMap is a red-black tree-based implementation of the Map interface. It stores entries in sorted order based on keys.
 
 	Map<String, Integer> treeMap = new TreeMap<>();
 	treeMap.put("Orange", 5);
 	treeMap.put("Mango", 15);
-	System.out.println(treeMap); // Output: {Mango=15, Orange=5}
+	treeMap.put("Pear", 50);
+	treeMap.put("Banana", 10);
+	System.out.println(treeMap); // Output: {Mango=15, Orange=5, Pear=50, Banana=10}
+	treeMap.remove("Pear");
+	System.out.println(treeMap); // Output: {Mango=15, Orange=5, Banana=10}
 
 4. Iterator : An Iterator allows you to traverse through a collection. ListIterator is a special type of iterator for List collections.
 
@@ -130,13 +194,31 @@ C. Queue : A Queue is a collection that follows the first-in, first-out (FIFO) p
 		}
 
 5. Custom Comparator : A Comparator allows you to define custom sorting logic for collections. You can use it to sort objects based on specific attributes.
+	Example  1:
+		Collections.sort(people, new Comparator<Person>() {
+		    @Override
+		    public int compare(Person p1, Person p2) {
+		        return p1.age - p2.age;
+		    }
+		});
 
-	Collections.sort(people, new Comparator<Person>() {
-	    @Override
-	    public int compare(Person p1, Person p2) {
-	        return p1.age - p2.age;
-	    }
-	});
+	Example 2: If we want ot sor the list in the descending order
+
+		Collections.sort(list, new Comparator<Integer>(){
+			@Override
+			public int compare(Integer num1, Integer num2){
+				if(num1 < num2){
+					return 1;
+				}else{
+					return -1;
+				}
+				return 0;
+			}
+		});
+
+	Note : 
+		1. always think that the list is of size 2, and we will be comparing between them
+		2. If the comparision is 
 
 6. Common Algorithms : Java provides several utility methods through the Collections and Arrays classes:
 
