@@ -83,6 +83,11 @@ A. List [ Interface ]: A List is an ordered collection that allows duplicate ele
 	vector.add("Blue");
 	System.out.println(vector); // Output: [Red, Blue]
 
+	get(int index): Retrieves the element at the specified index.
+	set(int index, E element): Updates the element at the specified index.
+
+
+
 
 B. Set [ Interface ] : A Set is a collection that does not allow duplicate elements. It is useful when you need to store unique elements.
 

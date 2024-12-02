@@ -14,10 +14,10 @@ class SumOfNumber{
 	}
 
 	public static int rec(int num){
-		if(num < 1){
-			return num;
+		if(num <= 0){
+			return 0;
 		}
-		int sum = num + rec(num - 1);
-		return sum;
+		
+		return num + rec(num - 1);
 	}
 }

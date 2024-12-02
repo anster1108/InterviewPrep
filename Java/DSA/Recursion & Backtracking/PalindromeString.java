@@ -13,7 +13,7 @@ import java.util.*;
 class PalindromeString {
 	public static void main(String[] args) {
 		String st = "madam";
-		boolean isPalindrome = rec(st, 0 , st.length() -1);
+		boolean isPalindrome = isPalindrome(st, 0 , st.length() -1);
 
 		if (isPalindrome) {
 			System.out.println("Given String is Palindrome");
@@ -21,16 +21,16 @@ class PalindromeString {
 			System.out.println("Given String is not Palindrome");
 		}
 	}
-
-	public static boolean rec(String st, int i, int j){
-		if (i == j) {
-			return true;
-		}
-		
-		if (st.charAt(i) != st.charAt(j)) {
-			return false;
+	
+	public static boolean isPalindrome(String s, int left, int right){
+		if(left >= right){
+		return true;
 		}
 
-		return rec(st, i+1, j-1);
-	}
+		if (s.charAt(left) != s.charAt(right)) {
+		    return false;
+		}
+
+        return isPalindrome(s, left + 1, right - 1);
+    }
 }

@@ -11,9 +11,7 @@ Output : {5, 4, 3, 2, 1}
 class ReverseArr {
 	public static void main(String[] args) {
 		int[] arr = {1,2,3,4,5};
-		int i = 0;
-		int j = arr.length - 1;
-		arr = rec(arr, i , j);
+		arr = rec(arr, 0 , arr.length - 1);
 
 		for (int val : arr) {
 			System.out.println(val);
