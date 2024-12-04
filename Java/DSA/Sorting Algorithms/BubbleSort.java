@@ -1,33 +1,47 @@
 /*
-    Bubble Sort:
+    2. Bubble Sort:
     -> Here we move the largest element to the right
     -> This is done by individual comparison
 
-    => here we move from 0 -> length of array, and shist the largest to right
+    => here we move from 0 -> length of array, and shifts the largest to right
         -> compare 0 with 1 , 1 with 2, 2 with 3, 3 wiht 4 and if any largest swap, swap and swap
         -> do this till ar.length == 0
 
     Time complexity : O(n^2)
 */
 
-class BubbleSort{
-    public static void main(String[] args) {
-        int ar[] = {13,46,24,52,20,9};
-        int max = ar.length;
-        int j = 0;
-        while(j < max){
-            for (int i = 0; i < max - 1 ; i++ ) {
-                if (ar[i] > ar[i+1]) {
-                    int temp = ar[i];
-                    ar[i] = ar[i+1];
-                    ar[i+1] = temp;
+
+import java.util.*;
+
+class BubbleSort {
+    // Bubble Sort Function
+    public int[] bubbleSort(int[] nums) {
+        int maxLength = nums.length;
+        int iter = 0;
+        while(iter < maxLength){
+            for(int i = 0; i < maxLength - 1 ; i++){
+                if(nums[i] > nums[i+1]){
+                    int temp = nums[i];
+                    nums[i] = nums[i+1];
+                    nums[i+1] = temp;
                 }
             }
-            max--;
+            maxLength--;
         }
+        return nums;
+    }
 
-        for (int name : ar) {
-            System.out.println(name);
-        }
+    public static void main(String[] args) {
+        // Create an instance of solution class
+        BubbleSort solution = new BubbleSort();
+
+        int[] nums = {7, 4, 1, 5, 3};
+
+        System.out.println("Array Before Using Bubble Sort: " + Arrays.toString(nums));
+
+        // Function call for Bubble Sort
+        nums = solution.bubbleSort(nums);
+
+        System.out.println("Array After Using Bubble Sort: " + Arrays.toString(nums));
     }
 }

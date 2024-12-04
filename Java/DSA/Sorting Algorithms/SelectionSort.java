@@ -1,5 +1,5 @@
 /* 
-    Selection sort
+    1. Selection sort
         Find the smallest element in the given array 
         and swap with the initial element and so on
 

@@ -1,11 +1,11 @@
 /*
-    Insertion Sort [ It takes an element and takes it to its correct position ]
-    Iterate and put the value to its exact place, this can be achieved by
-    -> take a snippet and find the smallest and shift to left of arr 
-    -> increase the array and take the last element and move to its existing position
-        by comparing to its righ next element
+   3.   Insertion Sort [ It takes an element and takes it to its correct position ]
+        Iterate and put the value to its exact place, this can be achieved by
+        -> take a snippet and find the smallest and shift to left of arr 
+        -> increase the array and take the last element and move to its existing position
+            by comparing to its righ next element
 
-    Time complexity : O(n^2)
+        Time complexity : O(n^2)
 */
 
 import java.util.*;
