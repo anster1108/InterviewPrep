@@ -9,6 +9,7 @@
 	
 	Brute Force : Time Complexity: O(N*N).
 				  Space Complexity: O(N*N).
+		
 		Approach: Take another dummy matrix of n*n, and then take the first row of the matrix and put it in the last column of the dummy matrix, 
 				  take the second row of the matrix, and put it in the second last column of the matrix and so.
 

@@ -54,10 +54,10 @@ Question 1 Soltion :
 				 -------------    => 
 				 r! * (n - r)!
 
-		So as per the conclusion,  the n umeratior will only got till the column tahts why = 10 * 9
+		So as per the conclusion,  the numeratior will only go till the column thats why = 10 * 9
 		and the denominator will stay with only , r! , i.e, 2 * 1
 
-		so numerator will be working witha a loop till r : 10( 1st iteration ) , 9( 2nd iteration )
+		so numerator will be working with a loop till r : 10( 1st iteration ) , 9( 2nd iteration )
 
 		colclusion , 10/1 * 9/2
 
@@ -65,8 +65,8 @@ Question 1 Soltion :
 		Func NCR(Row r, Column c){
 			result = 1
 			for(i = 0 : i < c, i++){
-				res = res * (r - 1); // res * (10 - 0), res * (10 - 1)
-				res = res / (i+1);   // res * (10 - 0) / (0+1) , res * (10 - 1) / (1+1) // 10/1 * 9/2 
+				res = res * (r - i); // res * (10 - 0), res * (10 - 1)
+				res = res / (i + 1);   // res * (10 - 0) / (0+1) , res * (10 - 1) / (1+1) // 10/1 * 9/2 
 			}
 
 			return res;
@@ -122,7 +122,7 @@ Observation : First and last element is 1 at any how.
 
 Question 3 : Print the whole triangle with given row
 
-This will be same as above, and printing eachb row till nth row
+This will be same as above, and printing each row till nth row
 
 
 */
@@ -151,13 +151,17 @@ class ParcalTriangle{
 	}
 
 	public static List<Integer> getPascalTriangleRow(int row){
-		List<Integer> ansRow = new ArrayList<>();
 		long ans = 1;
-		ansRow.add(ans); //inserting the 1st element
-		for (int col = 1; col <= row ; col++) {
-			ans = ans * (row - col);
-			ans = ans * col;
-		}
-		return ansRow;
+        List<Integer> ansRow = new ArrayList<>();
+        // Inserting the 1st element
+        ansRow.add(1);
+
+        // Calculate the rest of the elements
+        for (int col = 1; col < row; col++) {
+            ans = ans * (row - col);
+            ans = ans / col;
+            ansRow.add((int) ans);
+        }
+        return ansRow;
 	}
 }
