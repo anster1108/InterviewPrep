@@ -38,16 +38,8 @@
 
             if the sum exceedes, move the 2nd pointer to +1 and chceck the sum
                 if now , sum == k, check the length and is length > existing length , length = length
-    
-*/
 
-import java.util.*;
-
-class LongestSubArrayofSumK{
-    public static void main(String[] args) {
-        int[] a = {1,2,3,1,1,0,0,1,1,3,3};
-        int right = 0 ,left = 0, sum = 0, maxLen = 0, k = 6, n = a.length;
-        while (right < n) {
+            while (right < n) {
             // if sum > k, reduce the subarray from left
             // until sum becomes less or equal to k:
             while (left <= right && sum > k) {
@@ -64,6 +56,34 @@ class LongestSubArrayofSumK{
             right++;
             if (right < n) sum += a[right];
         }
-        System.out.println("maxLen : "+ maxLen);
+    
+*/
+
+import java.util.*;
+
+class LongestSubArrayofSumK{
+    public static void main(String[] args) {
+        int[] nums = {1,2,3,1,1,0,0,1,1,3,3};
+        int longest = 0, sum = 0;
+        Map<Integer, Integer> hmap = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i];
+
+            if(sum == k){
+                longest = Math.max(longest, i+1);
+            }
+
+            int rem = sum - k ;
+            if(hmap.containsKey(rem)){
+                int len = i - hmap.get(rem);
+                longest = Math.max(longest, len);
+            }
+
+            if(!hmap.containsKey(sum)){
+                hmap.put(sum, i);
+            }
+        }
+        
+        System.out.println("maxLen : "+ longest);
     }
 }
