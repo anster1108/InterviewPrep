@@ -1,0 +1,62 @@
+Longest Subarray or Substring Explanation
+	The problem statement revolves around finding the longest subarray or substring from a given array or string, where the sum of the elements is less than or equal to a given value K. This approach is widely used in coding interviews and is based on the sliding window technique.
+
+	Initially, you might start with a brute-force approach where you generate all possible subarrays or substrings and then check each one to see if it meets the condition. However, this is inefficient and can be optimized using the sliding window technique.
+
+Sliding Window Technique
+	The sliding window technique helps in optimizing the process by maintaining a window that expands or shrinks based on the conditions. Here's how it works:
+
+	Step-by-Step Process:
+		Initialize Pointers: Start with two pointers, L (left) and R (right), both set to the beginning of the array or string. Also, initialize variables sum and maxLength to zero.
+
+		Expand the Window: Start expanding the window by moving the R pointer. Add the element at the R pointer to sum.
+
+		Check the Condition: If the sum is less than or equal to K, check if the current window size (R - L + 1) is the largest so far. If it is, update maxLength.
+
+		Shrink the Window: If the sum exceeds K, start shrinking the window by moving the L pointer to the right. Subtract the element at the L pointer from sum and continue this process until the sum is less than or equal to K again.
+
+		Continue Until the End: Repeat the above steps until the R pointer reaches the end of the array or string.
+
+		Result: The value in maxLength at the end of the process will be the length of the longest subarray or substring that satisfies the condition.
+
+Code :
+
+	public class LongestSubarraySum {
+
+	    // Function to find the longest subarray with sum <= K
+	    public static int longestSubarrayWithSum(int[] arr, int K) {
+	        int n = arr.length;
+	        int maxLength = 0; // Initialize the maximum length to 0
+	        int sum = 0;       // Initialize the current sum to 0
+	        int left = 0;      // Left pointer for the sliding window
+
+	        // Iterate over the array using the right pointer
+	        for (int right = 0; right < n; right++) {
+	            sum += arr[right]; // Add the current element to the sum
+
+	            // Shrink the window from the left if sum exceeds K
+	            while (sum > K) {
+	                sum -= arr[left]; // Subtract the leftmost element from the sum
+	                left++;           // Move the left pointer to the right
+	            }
+
+	            // Update the maximum length if the current window is valid
+	            maxLength = Math.max(maxLength, right - left + 1);
+	        }
+
+	        return maxLength; // Return the maximum length of the valid subarray
+	    }
+
+	    public static void main(String[] args) {
+	        int[] arr = {2, 5, 1, 7, 10}; // Example array
+	        int K = 14; // Example value of K
+
+	        // Find and print the length of the longest subarray with sum <= K
+	        int result = longestSubarrayWithSum(arr, K);
+	        System.out.println("The longest subarray length with sum <= " + K + " is: " + result);
+	    }
+	}
+
+The above code demonstrates the sliding window approach. The key is to balance the window's expansion and contraction to ensure that the sum of the elements inside the window is always less than or equal to K.
+
+This method is much more efficient than the brute-force approach and is commonly used in problems involving subarrays or substrings with specific conditions.

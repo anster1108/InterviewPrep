@@ -1,0 +1,52 @@
+Constant Window Approach
+
+	The sliding window technique, when combined with the two-pointer approach, is a powerful method for solving problems that involve subarrays or substrings within a fixed range. The constant window approach maintains a window of a specific size and slides it across the array or string. This editorial details a method to efficiently compute the sum of elements within such a window by leveraging the properties of the sliding window technique.
+
+Concept
+	The goal is to calculate the sum of elements within a fixed-size window as it moves across the array. A brute-force method would involve recalculating the sum of the window each time it moves, which would lead to a time complexity of O(n * k), where n is the number of elements in the array, and k is the size of the window.
+
+	However, a more efficient approach involves updating the sum incrementally. As the window slides from left to right, the sum of the current window can be derived from the sum of the previous window by subtracting the element that is leaving the window (on the left) and adding the element that is entering the window (on the right). This reduces the time complexity to O(n).
+
+Steps
+	Initialize two pointers: left and right. The left pointer marks the beginning of the window, and the right pointer marks the end.
+
+	Calculate the sum of the initial window.
+	
+	Slide the window by incrementing both left and right pointers. Update the sum by subtracting the element at the left pointer and adding the element at the right pointer.
+	
+	Continue this process until the window has traversed the entire array.
+
+Pseudocode
+
+	import java.util.*;
+
+	public class SlidingWindowSum {
+	    public static void slidingWindowSum(int[] arr, int k) {
+	        int n = arr.length;
+	        int sum = 0;
+
+	        // Calculate the sum of the initial window
+	        for (int i = 0; i < k; i++) {
+	            sum += arr[i];
+	        }
+
+	        // Print the sum of the first window
+	        System.out.println("Sum of window 1: " + sum);
+
+	        // Slide the window across the array
+	        for (int i = k; i < n; i++) {
+	           // Update the sum
+	            sum = sum - arr[i - k] + arr[i]; 
+	            System.out.println("Sum of window " + (i - k + 2) + ": " + sum);
+	        }
+	    }
+
+	    public static void main(String[] args) {
+	        int[] arr = {1, 3, 2, 6, 4, 8, 5};
+	        int k = 3;
+	        slidingWindowSum(arr, k);
+	    }
+	}
+
+Conclusion
+	The constant window approach to solving sliding window problems provides a significant optimization over recalculating the sum for each window position. By simply updating the sum based on the elements that leave and enter the window, the time complexity is reduced to linear time, making it an efficient solution for large input sizes.

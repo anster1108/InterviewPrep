@@ -1,0 +1,56 @@
+Counting the Number of Subarrays with a Given Sum
+
+	In some sliding window problems, the task is not just to find the minimum or maximum length of a subarray, but to count the number of subarrays that satisfy a particular condition. This editorial focuses on such problems, where the goal is to determine the number of subarrays with a given sum, specifically for binary arrays.
+
+	Consider the problem of counting the number of subarrays that sum up to 'k'. The approach involves calculating the number of subarrays with at most K ones and then subtracting the number of subarrays with at most K-1 ones. The difference gives the number of subarrays with exactly K ones.
+
+
+Method
+	Define a helper function that counts the number of subarrays with at most K ones. If K is less than 0, the result is 0.
+
+	Iterate through the array using two pointers. Adjust the window size to ensure the sum of the window is at most K. Incrementally add the number of valid subarrays to the result.
+	
+	Subtract the result of atMost(K-1) from atMost(K) to get the number of subarrays with exactly K ones.
+
+import java.util.*;
+
+public class Solution {
+
+    // Function to find the number of subarrays with exactly sum S
+    public int numSubarraysWithSum(int[] A, int S) {
+        return atMost(A, S) - atMost(A, S - 1);
+    }
+
+    // Helper function to find the number of subarrays with at most sum S
+    private int atMost(int[] A, int S) {
+        if (S < 0) return 0;
+        int res = 0, i = 0;
+
+        // Sliding window approach to count subarrays
+        for (int j = 0; j < A.length; j++) {
+        // Include A[j] in the current window
+            S -= A[j];  
+            while (S < 0) {
+            // Shrink the window if the sum exceeds S
+                S += A[i++];  
+            }
+            // Count all subarrays ending at j
+            res += j - i + 1; 
+        }
+
+        return res;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] A = {1, 0, 1, 0, 1}; // Example array
+        int S = 2; // Desired sum
+        int result = sol.numSubarraysWithSum(A, S);
+        System.out.println("Number of subarrays with sum " + S + ": " + result);
+    }
+}
+
+
+Conclusion
+
+	By leveraging the difference between the number of subarrays with at most K ones and those with at most K-1 ones, it is possible to efficiently calculate the number of subarrays with exactly K ones. This method provides a concise and powerful solution to a class of sliding window problems.
