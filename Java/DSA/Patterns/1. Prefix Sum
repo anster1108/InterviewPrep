@@ -1,0 +1,140 @@
+Prefix Sum : Prefix Sum is the cummulative sum of elements from the start of the array to a given index.
+
+Code :
+	
+	Class PrefixSum{
+		public static int[] calculatePrefixSum(int[] nums){
+			int[] ps = new int[nums.length];
+			ps[0] = nums[0];
+			for(int i = 1; i < nums.length; i++){
+				ps[i] = ps[i - 1] + nums[i];
+			}
+			return ps;
+		}
+	}
+
+Queries where it can be used :
+	-> Range Sum Queries
+
+		nums = [ 3, 5, 4, 2, 7, 9 ]
+		            i        j
+
+		Compute the sum of elements between 2 indices [i, j]
+
+	-> Sub array Sum pattern
+
+		nums = [ 3, 5, 4, 2, 7, 9 ]
+		            |________|
+
+		Find or count the numbers of SubArrays that add up to a specific value.
+
+LeetCode Problem :
+	
+	Q) [303] Range Sum Queries - immutable
+		Given an integer array, answer queries that ask for the sum of elements between two indices.
+
+		Brute Force : O(n), where we can move from i -> j and give sum 
+
+			Class Solution{
+				private int[] nums;
+
+				public Solution(int[] nums){
+					this.nums = nums;
+				}
+
+				public int sumRange(int i , int j){
+					int sum = 0;
+					for(int k = i; k <= j; k++){
+						sum += nums[k];
+					}
+					return ps;
+				}
+			}
+
+
+		Optimal : O(1)
+
+			Class Solution{
+				private int[] prefixSum;
+
+				public Solution(int[] nums){
+					for(int i = 1; i < nums.length; i++){
+						nums[i] = nums[i] + nums[i - 1];
+					}
+					this.prefixSum = nums;
+				}
+
+				public int sumRange(int left, int right){
+					if(left == 0){
+						return prefixSum[right];
+					}
+					return prefixSum[right] - prefixSum[left - 1];
+				}
+			}
+
+
+	Q) [560] SubArray Sum Equals K
+		Given an integer array numsand an integer K, return the number of subarrays whose sum equlas to k.
+
+		Brute : O(n^2), going to every elment/subarray and checking for sum of k.
+
+			Class Solution{
+				private int[] nums;
+
+				public Solution(int[] nums){
+					this.nums = nums;
+				}
+
+				public int subArraySum(int k , int[] nums){
+					int count = 0;
+					for(int i = 0; i < nums.length; i++){
+						int sum = 0;
+						for(int j = i; j < nums.length; j++){
+							sum = sum + nums[j];
+							if(sum == k){
+								count++;
+							}
+						}
+					}
+					return count;
+				}
+			}
+
+		Optimal: O(n)
+				prefixSum[right] - prefixSum[left - 1] = k;
+				prefixSum[right] - k = prefixSum[left - 1];
+
+
+				public int subArraySum(int k , int[] nums){
+					int prefixSum = 0;
+					int count = 0;
+
+					HashMap<Integer, Integer> prefixSumFrequency = new HashMap<>();
+
+					prefixSumFrequescy(0, 1);
+					for(int num : nums){
+						prefixSum = prefixSum + num;
+						if(prefixSumFrequency.contains(prefixSum - k)){
+							count = count + prefixSumFrequency.get(prefixSum - k);
+						}
+
+						prefixSumFrequency.put(prefixSum , prefixSumFrequency.getOrDefault(prefixSum, 0) + 1);
+					}
+					return count;
+				}
+
+https://blog.algomaster.io/i/150471196/leetcode-problems
+More LeetCode Problems:
+
+	Range Sum Query - Immutable (LeetCode #303)
+
+	Subarray Sum Equals K (LeetCode #560)
+
+	Continuous Subarray Sum (LeetCode #523)
+
+	Subarray Sums Divisible by K (LeetCode #974)
+
+	Product of Array Except Self (LeetCode #238)
+
+	Path Sum III (LeetCode #437)
+
