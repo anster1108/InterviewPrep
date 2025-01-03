@@ -1,0 +1,83 @@
+LinkedList In Place Reversal : The In-place Reversal of a LinkedList pattern reverses parts of a linked list without using extra space.
+
+	Use this pattern when you need to reverse sections of a linked list.
+
+Sample Problem:
+	Reverse a sublist of a linked list from position m to n.
+
+	Example:
+
+	Input: head = [1, 2, 3, 4, 5], m = 2, n = 4
+
+	Output: [1, 4, 3, 2, 5]
+
+	Code : 
+		public static ListNode reverseBetween(ListNode head, int m, int n) {
+	        if (head == null || m == n) {
+	            return head; // No need to reverse if the list is empty or m == n
+	        }
+
+	        // Create a dummy node to simplify edge cases
+	        ListNode dummy = new ListNode(0);
+	        dummy.next = head;
+	        ListNode prev = dummy;
+
+	        // Move `prev` to the node before the `m`th position
+	        for (int i = 1; i < m; i++) {
+	            prev = prev.next;
+	        }
+
+	        // Start reversing the sublist
+	        ListNode current = prev.next;
+	        ListNode next = null;
+
+	        for (int i = 0; i < n - m; i++) {
+	            next = current.next;          // Store the next node
+	            current.next = next.next;     // Disconnect `current` from `next`
+	            next.next = prev.next;        // Point `next` to the reversed part
+	            prev.next = next;             // Move `next` to the front
+	        }
+
+	        return dummy.next;
+	    }
+
+Explanation:
+	1. Preparation: 
+		Create a dummy node to handle edge cases (like reversing from the head of the list).
+		
+		Traverse the list to position m−1, so prev points to the node before the start of the sublist to be reversed.
+	2. Reversal Process:
+		Reverse the sublist using a loop.
+		
+		Rearrange the pointers for nodes between m and n iteratively:
+			Disconnect current from next.
+		
+			Insert next into the reversed section.
+		
+			Update pointers accordingly.
+	3. Completion: Return the list starting from dummy.next, which points to the head of the potentially modified list.
+
+Example Execution:
+	Input: head = [1, 2, 3, 4, 5], m = 2, n = 4
+
+	Process:
+
+	Initial list: 1 -> 2 -> 3 -> 4 -> 5
+	
+	Reverse the sublist [2, 3, 4]:
+	
+		After first iteration: 1 -> 3 -> 2 -> 4 -> 5
+		
+		After second iteration: 1 -> 4 -> 3 -> 2 -> 5
+
+Complexity:
+	Time Complexity: O(n): Single traversal of the list.
+	Space Complexity: O(1): No additional space is used. Reversal is done in place.
+
+LeetCode Problems:
+
+	Reverse Linked List (LeetCode #206)
+
+	Reverse Linked List II (LeetCode #92)
+
+	Swap Nodes in Pairs (LeetCode #24)

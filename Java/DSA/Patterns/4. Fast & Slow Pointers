@@ -1,0 +1,88 @@
+Fast & Slow Pointers : The Fast & Slow Pointers (Tortoise and Hare) pattern is used to detect cycles in linked lists and other similar structures.
+
+Sample Problem:
+	-> [ #141 ] Detect if a linked list has a cycle. 
+	-> [ #876 ] Find the middle node of the linked list. [ as fast moves by 2 steps , one fast reched the end, slow will be on the middle node ]
+
+Code #141 : 
+	class Node {
+	    int data;
+	    Node next;
+
+	    Node(int data) {
+	        this.data = data;
+	        this.next = null;
+	    }
+	}
+
+	public class LinkedListLoopDetection {
+	    public static void main(String[] args) {
+	        // Create a linked list with a loop
+	        Node head = new Node(1);
+	        head.next = new Node(2);
+	        head.next.next = new Node(3);
+	        head.next.next.next = new Node(4);
+	        head.next.next.next.next = new Node(5);
+	        head.next.next.next.next.next = head.next.next; // Creating a loop
+
+	        boolean hasLoop = detectLoop(head);
+	        System.out.println("Does the linked list have a loop? " + hasLoop);
+	    }
+
+	    public static boolean detectLoop(Node head) {
+	        if (head == null || head.next == null) {
+	            return false; // No loop if the list is empty or has only one node
+	        }
+
+	        Node slow = head; // Slow pointer moves one step at a time
+	        Node fast = head; // Fast pointer moves two steps at a time
+
+	        while (fast != null && fast.next != null) {
+	            slow = slow.next;         // Move slow pointer one step
+	            fast = fast.next.next;    // Move fast pointer two steps
+
+	            if (slow == fast) {
+	                return true; // Loop detected
+	            }
+	        }
+
+	        return false; // No loop found
+	    }
+	}
+
+
+Explanation:
+	1. Two Pointers:
+		Slow Pointer: Moves one step at a time.
+		Fast Pointer: Moves two steps at a time.
+	2. Detection Logic:
+		If there is a loop, the fast pointer will eventually meet the slow pointer.
+		If the fast pointer reaches the end of the list (null), the list has no loop.
+	3. Time Complexity: O(n): Each pointer traverses the linked list only once.
+	4. Space Complexity:O(1): No extra space is used.
+
+Example Execution:
+	Input: Linked list: 1 → 2 → 3 → 4 → 5 → loop back to 3
+
+	Output: Does the linked list have a loop? true
+
+	Steps: 
+
+		- Slow pointer moves: 1 → 2 → 3 → 4 → ….
+		- Fast pointer moves: 1 → 3 → 5 → 3 → ….
+		- Both pointers eventually meet at node 3, confirming a loop.
+
+LeetCode Problems:
+	Linked List Cycle (LeetCode #141)
+
+	Happy Number (LeetCode #202)
+
+	Find the Duplicate Number (LeetCode #287)
+
+	Palindrome Linked List (LeetCode #234)
+
+	Linked List Cycle II (LeetCode #142)
+	
+	Reorder List (LeetCode #143)
+
+	Circular Array Loop (LeetCode #457)

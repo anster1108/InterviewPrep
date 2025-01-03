@@ -1,0 +1,68 @@
+Monotonic Stack : The Monotonic Stack pattern leverages stack data structure to maintain elements in a specific order (monotonic increasing or decreasing) and helps in solving problems related to next greater/smaller elements, stock spans, and more.
+
+The key advantage of using a monotonic stack is that it allows us to solve these types of problems in O(n) time complexity, where n is the number of elements in the array.
+
+The choice between increasing and decreasing depends on the specific problem requirements.
+
+	In a monotonically increasing stack, each element is greater than or equal to the element below it.
+
+	In a monotonically decreasing stack, each element is smaller than or equal to the element below it.
+
+
+How to Implement a Monotonic Stack
+
+	The basic implementation of a monotonic stack involves:
+
+		Initializing an empty stack
+
+		Iterating through the array
+
+		For each element, removing elements from the stack that violate the monotonic property
+
+		Adding the current element to the stack
+
+
+1. Next Greater Element I (LeetCode 496)
+	Problem Statement: Given an array nums, find the next greater element for each element in the array. The next greater element of an element x in nums is the first greater element to its right in the array.
+
+	Intuition:
+
+		When trying to find the next greater element for each number, it is inefficient to use nested loops, resulting in O(n^2) complexity.
+
+		Instead, a stack can help maintain a list of elements for which we haven't found the next greater element yet.
+
+		By traversing the array from right to left, we can ensure that when we find a greater element, it will be the next one in order.
+
+	Solution:
+
+		Initialize an empty stack and a result array with -1 values.
+
+		Iterate through the array from right to left.
+
+		For each element, pop elements from the stack until the top element is greater than the current element.
+
+		If the stack is not empty, the top element is the next greater element for the current element.
+
+		Push the current element onto the stack.
+
+
+	This solution uses a monotonically decreasing stack to find the next greater element for each number in nums.
+
+	Time Complexity: O(n)
+	Space Complexity: O(n)
+
+Other LeetCode Problems:
+	 Daily Temperatures (LeetCode 739)
+	 Largest Rectangle in Histogram (LeetCode 84)
+
+Key points to remember:
+
+	Monotonic stacks maintain elements in a non-increasing or non-decreasing order.
+
+	They are particularly useful for finding the next/previous greater/smaller element.
+
+	Monotonic stacks often lead to O(n) time complexity solutions.
+
+	The pattern can be adapted to solve a wide range of problems, including those involving temperatures, stock prices, and histograms.
+
+		 
