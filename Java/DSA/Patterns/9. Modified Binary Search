@@ -1,0 +1,100 @@
+Modified Binary Search : The Modified Binary Search pattern adapts binary search to solve a wider range of problems, such as finding elements in rotated sorted arrays.
+
+Use this pattern for problems involving sorted or rotated arrays where you need to find a specific element.
+
+	- Searching in a nearly sorted array [4, 5, 6, 7, 0, 1, 2]
+	- Searching in a rotated sorted array [4, 5, 6, 7, 0, 1, 2]
+	- Searching in a list with unknown length
+	- Searching in a array with duplicates
+	- finding the first or last occurence of an element
+	- finding the square root of a number
+	- finding a peak element
+
+Sample Problem:
+	Find an element in a rotated sorted array.
+
+	Example:
+
+	Input: nums = [4, 5, 6, 7, 0, 1, 2], target = 0
+
+	Output: 4
+
+Code :
+	public class RotatedSortedArraySearch {
+	    public static void main(String[] args) {
+	        int[] nums = {4, 5, 6, 7, 0, 1, 2};
+	        int target = 0;
+	        int index = search(nums, target);
+
+	        System.out.println("Index of target " + target + ": " + index);
+	    }
+
+	    public static int search(int[] nums, int target) {
+	        int left = 0, right = nums.length - 1;
+
+	        while (left <= right) {
+	            int mid = left + (right - left) / 2;
+
+	            if (nums[mid] == target) {
+	                return mid; // Found the target
+	            }
+
+	            // Check if the left half is sorted
+	            if (nums[left] <= nums[mid]) {
+	                if (nums[left] <= target && target < nums[mid]) {
+	                    right = mid - 1; // Target is in the left sorted portion
+	                } else {
+	                    left = mid + 1; // Target is in the right portion
+	                }
+	            } else {
+	                // The right half is sorted
+	                if (nums[mid] < target && target <= nums[right]) {
+	                    left = mid + 1; // Target is in the right sorted portion
+	                } else {
+	                    right = mid - 1; // Target is in the left portion
+	                }
+	            }
+	        }
+
+	        return -1; // Target not found
+	    }
+	}
+
+Explanation:
+	1. Binary Search:
+		Use the middle element (mid) to decide which half of the array to search next.
+
+	2. Determine Sorted Half:
+		Check if the left half (nums[mid]) is sorted:
+			If sorted, check if the target lies within this range.
+			Otherwise, the target must be in the right half.
+		If the left half isn't sorted, the right half (nums[right]) must be sorted:
+			Similarly, check if the target lies within this range.
+
+	3. Narrow Down:
+		Adjust the left or right pointers based on where the target lies.
+
+	4. Repeat Until Found:
+		Continue until the target is found or the search range is exhausted.
+
+Example Execution:
+	Input: {4, 5, 6, 7, 0, 1, 2}; target : 0
+
+	Steps:
+		1. Initial: left = 0, right = 6, mid = 3
+			nums[mid]=7, left half sorted, target not in range → Search right half.
+		2. Update: left = 4, right = 6, mid = 5
+			nums[mid]=1, right half sorted, target in range → Search left half.
+		3. Update: left = 4, right = 4, mid = 4
+			nums[mid]=0, target found.
+
+Complexity:
+	Time Complexity: O(logn): Each step halves the search range.
+	Space Complexity: O(1): No extra space used.
+
+LeetCode Problems:
+	Search in Rotated Sorted Array (LeetCode #33)
+
+	Find Minimum in Rotated Sorted Array (LeetCode #153)
+
+	Search a 2D Matrix II (LeetCode #240)
