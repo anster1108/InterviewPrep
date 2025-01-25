@@ -99,3 +99,9 @@ class InorderTraversal {
         System.out.println();
     }
 }
+/*
+    Complexity Analysis :
+        Time Complexity: O(N) where N is the number of nodes in the binary tree, as each node of the binary tree is visited exactly once.
+
+        Space Complexity: O(N) where N is the number of nodes in the binary tree, as an additional space for the array is allocated to store the values of all ‘N’ nodes of the binary tree.
+*/
