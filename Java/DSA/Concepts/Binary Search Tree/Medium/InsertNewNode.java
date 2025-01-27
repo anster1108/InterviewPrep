@@ -4,6 +4,10 @@
 
 		Return the root node of the BST after the insertion.
 		It is guaranteed that the new value does not exist in the original BST.
+
+    Complexity Analysis
+        Time Complexity: O(H), where H is the height of the tree, which in the worst case can be N (for a skewed tree), but for a balanced BST, it will be log(N).
+        Space Complexity: O(1) Only a constant amount of space is used to store the current node and the new node, regardless of the size of the input tree.
 */
 
 public class TreeNode {

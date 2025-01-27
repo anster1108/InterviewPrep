@@ -2,6 +2,11 @@
 	Delete a node in BST
 		Given the root node of a binary search tree (BST) and a value key.
 		Return the root node of the BST after the deletion of the node with the given key value.
+
+	Complexity Analysis
+		Time Complexity: O(H), explanation is that the time complexity is dependent on the height of the tree.
+
+		Space Complexity: O(H), explanation is that the maximum depth of the recursion call stack is equal to the height of the tree.
 */
 // Definition for a binary tree node.
 public class TreeNode {
