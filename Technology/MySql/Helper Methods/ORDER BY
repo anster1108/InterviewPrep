@@ -1,0 +1,135 @@
+In MySQL, the ORDER BY clause is used to sort the result set of a query in ascending or descending order based on one or more columns. By default, ORDER BY sorts in ascending order (ASC). You can specify descending order using DESC.
+
+Syntax
+	SELECT column1, column2, ...
+	FROM table_name
+	ORDER BY column1 [ASC|DESC], column2 [ASC|DESC], ...;
+
+	- column1, column2, ...: The columns to sort by.
+
+	- ASC: Sorts in ascending order (default).
+
+	- DESC: Sorts in descending order.
+
+Examples
+	Table: employees
+	
+	id		name			salary		department
+	1		John Doe		60000		Sales
+	2		Jane Smith		45000		HR
+	3		Alice Lee		80000		Sales
+	4		Bob Johnson		55000		IT
+
+
+1. Sort by a Single Column (Ascending Order)
+	Sort employees by their name in ascending order.
+
+	Query : SELECT name, salary FROM employees
+			ORDER BY name ASC;
+
+
+	Output:
+
+		name			salary
+		Alice Lee		80000
+		Bob Johnson		55000
+		Jane Smith		45000
+		John Doe		60000
+	
+	Explanation: The result is sorted alphabetically by name.
+
+
+2. Sort by a Single Column (Descending Order)
+	Sort employees by their salary in descending order.
+
+	Query : SELECT name, salary FROM employees
+			ORDER BY salary DESC;
+
+	Output:
+
+		name		salary
+		Alice Lee	80000
+		John Doe	60000
+		Bob Johnson	55000
+		Jane Smith	45000
+
+	Explanation: The result is sorted by salary from highest to lowest.
+
+
+3. Sort by Multiple Columns
+	Sort employees by department in ascending order and then by salary in descending order.
+
+	Query :  SELECT name, department, salary FROM employees
+			 ORDER BY department ASC, salary DESC;
+
+	Output:
+
+		name		department	salary
+		Jane Smith	HR			45000
+		Bob Johnson	IT			55000
+		Alice Lee	Sales		80000
+		John Doe	Sales		60000
+
+	
+	Explanation:
+		- First, the result is sorted by department in ascending order.
+
+		- Within each department, employees are sorted by salary in descending order.
+
+4. Sort by Column Position
+	Sort employees by the second column (salary) in ascending order.
+
+	Query : SELECT name, salary FROM employees
+			ORDER BY 2 DESC;
+
+	Output:
+
+		name		salary
+		Alice Lee	80000
+		John Doe	60000
+		Bob Johnson	55000
+		Jane Smith	45000
+
+	Explanation: The 2 in ORDER BY 2 refers to the second column in the SELECT list (salary).
+
+5. Sort with NULL Values
+	Sort employees by email in ascending order, with NULL values appearing last.
+
+	Query : SELECT name, email FROM employees
+			ORDER BY email IS NULL, email ASC;
+
+
+		Output:
+
+		name			email
+		Alice Lee		alice@example.com
+		John Doe		john@example.com
+		Jane Smith		NULL
+
+
+	Explanation:
+
+		- email IS NULL evaluates to 1 for NULL values and 0 for non-NULL values.
+
+		- Rows are sorted first by email IS NULL (placing NULL values last) and then by email in ascending order.
+
+
+Key Notes
+
+	1. Default Order: If no order is specified (ASC or DESC), the result is sorted in ascending order.
+
+	2. Multiple Columns: You can sort by multiple columns by separating them with commas.
+
+	3. Column Position: You can use column positions (e.g., ORDER BY 2) instead of column names.
+
+	4. NULL Handling: By default, NULL values are treated as the lowest possible values in ascending order and the highest in descending order.
+
+
+
+
+
+
+
+
+
+

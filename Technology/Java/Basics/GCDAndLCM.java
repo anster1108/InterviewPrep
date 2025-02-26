@@ -11,7 +11,7 @@ class GCDAndLCM{
 	}
 
 	public static int findLCM(int a, int b){
-		 // Handle negative inputs (LCM of negative numbers is undefined)
+		// Handle negative inputs (LCM of negative numbers is undefined)
         if (a < 0 || b < 0) {
             return -1;
         }

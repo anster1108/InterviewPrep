@@ -1,0 +1,154 @@
+In MySQL, JOINs are used to combine rows from two or more tables based on a related column between them. There are several types of joins, each serving a specific purpose. Below is an explanation of the most common types of joins, along with diagrams and examples.
+
+Types of Joins in MySQL
+	1. INNER JOIN
+	2. LEFT JOIN (or LEFT OUTER JOIN)
+	3. RIGHT JOIN (or RIGHT OUTER JOIN)
+	4. FULL JOIN (or FULL OUTER JOIN) (Not directly supported in MySQL, but can be emulated)
+	5. CROSS JOIN
+	6. SELF JOIN
+
+
+1. INNER JOIN 
+	Returns only the rows that have matching values in both tables.
+
+	Non-matching rows are excluded.
+
+		Table A          Table B
+		+----+----+      +----+----+
+		| id | val|      | id | val|
+		+----+----+      +----+----+
+		| 1  | A  |      | 1  | X  |
+		| 2  | B  |      | 3  | Y  |
+		| 3  | C  |      | 4  | Z  |
+		+----+----+      +----+----+
+
+		INNER JOIN Result:
+		+----+----+----+----+
+		| id | val| id | val|
+		+----+----+----+----+
+		| 1  | A  | 1  | X  |
+		| 3  | C  | 3  | Y  |
+		+----+----+----+----+
+
+
+	Example : SELECT A.id, A.val, B.val 
+			  	FROM TableA A
+			 	INNER JOIN TableB B ON A.id = B.id;
+
+2. LEFT JOIN
+	Returns all rows from the left table (Table A), and the matching rows from the right table (Table B).
+
+	If there is no match, NULL values are returned for columns from the right table.
+
+		Table A          Table B
+		+----+----+      +----+----+
+		| id | val|      | id | val|
+		+----+----+      +----+----+
+		| 1  | A  |      | 1  | X  |
+		| 2  | B  |      | 3  | Y  |
+		| 3  | C  |      | 4  | Z  |
+		+----+----+      +----+----+
+
+		LEFT JOIN Result:
+		+----+----+------+------+
+		| id | val| id   | val  |
+		+----+----+------+------+
+		| 1  | A  | 1    | X    |
+		| 2  | B  | NULL | NULL |
+		| 3  | C  | 3    | Y    |
+		+----+----+------+------+
+
+	Example : SELECT A.id, A.val, B.val 
+				FROM TableA A
+				LEFT JOIN TableB B ON A.id = B.id;
+
+3. RIGHT JOIN
+	Returns all rows from the right table (Table B), and the matching rows from the left table (Table A).
+
+	If there is no match, NULL values are returned for columns from the left table.
+
+		Table A          Table B
+		+----+----+      +----+----+
+		| id | val|      | id | val|
+		+----+----+      +----+----+
+		| 1  | A  |      | 1  | X  |
+		| 2  | B  |      | 3  | Y  |
+		| 3  | C  |      | 4  | Z  |
+		+----+----+      +----+----+
+
+		RIGHT JOIN Result:
+		+------+------+----+----+
+		| id   | val  | id | val|
+		+------+------+----+----+
+		| 1    | A    | 1  | X  |
+		| 3    | C    | 3  | Y  |
+		| NULL | NULL | 4  | Z  |
+		+------+------+----+----+
+
+
+	Example : SELECT A.id, A.val, B.val 
+				FROM TableA A
+				RIGHT JOIN TableB B ON A.id = B.id;
+
+4. FULL JOIN (FULL OUTER JOIN)
+	Returns all rows when there is a match in either the left table (Table A) or the right table (Table B).
+
+	If there is no match, NULL values are returned for columns from the table without a match.
+
+	Note: MySQL does not directly support FULL JOIN, but it can be emulated using UNION of LEFT JOIN and RIGHT JOIN.
+
+	Table A          Table B
+	+----+----+      +----+----+
+	| id | val|      | id | val|
+	+----+----+      +----+----+
+	| 1  | A  |      | 1  | X  |
+	| 2  | B  |      | 3  | Y  |
+	| 3  | C  |      | 4  | Z  |
+	+----+----+      +----+----+
+
+	FULL JOIN Result:
+	+------+------+------+------+
+	| id   | val  | id   | val  |
+	+------+------+------+------+
+	| 1    | A    | 1    | X    |
+	| 2    | B    | NULL | NULL |
+	| 3    | C    | 3    | Y    |
+	| NULL | NULL | 4    | Z    |
+	+------+------+------+------+	
+
+
+	Example :
+			SELECT A.id, A.val, B.val 
+			FROM TableA A
+			LEFT JOIN TableB B ON A.id = B.id;
+			UNION
+			SELECT A.id, A.val, B.val 
+			FROM TableA A
+			RIGHT JOIN TableB B ON A.id = B.id;
+
+5. SELF JOIN
+	A table is joined with itself.
+
+	Useful for querying hierarchical data or comparing rows within the same table.
+
+	Example :
+				SELECT A.id AS id1, A.val AS val1, B.id AS id2, B.val AS val2
+				FROM TableA A, TableA B
+				WHERE A.id <> B.id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

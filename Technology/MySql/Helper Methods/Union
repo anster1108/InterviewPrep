@@ -1,0 +1,179 @@
+In MySQL, the UNION and UNION ALL operators are used to combine the results of two or more SELECT queries into a single result set. While both operators serve a similar purpose, they have a key difference in how they handle duplicate rows.
+
+
+Key Differences
+Feature			UNION								UNION ALL
+Duplicate Rows	Removes duplicate rows.				Includes duplicate rows.
+Performance		Slower (due to duplicate removal).	Faster (no duplicate removal).
+Use Case		When you need unique rows.			When duplicates are acceptable.
+
+
+Syntax : 
+		SELECT column1, column2, ...
+		FROM table1
+		UNION [ALL]
+		SELECT column1, column2, ...
+		FROM table2;
+
+
+Examples
+
+	Table 1: employees
+	id	name		salary	department
+	1	John Doe	60000	Sales
+	2	Jane Smith	45000	HR
+	3	Alice Lee	80000	Sales
+
+
+	Table 2: contractors
+	id	name			salary	department
+	1	Bob Johnson		55000	IT
+	2	Alice Lee		80000	Sales
+	3	Charlie Brown	70000	IT
+
+1. Using UNION
+
+Combine the name and salary columns from both tables and remove duplicates.
+
+Query : 
+	SELECT name, salary
+	FROM employees
+	UNION
+	SELECT name, salary
+	FROM contractors;
+
+	Output:
+
+		name			salary
+		John Doe		60000
+		Jane Smith		45000
+		Alice Lee		80000
+		Bob Johnson		55000
+		Charlie Brown	70000
+
+Explanation: The UNION operator removes duplicate rows. Since "Alice Lee" appears in both tables, only one instance is included in the result.
+
+
+2. Using UNION ALL
+
+Combine the name and salary columns from both tables and retain duplicates.
+
+Query : 
+	SELECT name, salary
+	FROM employees
+	UNION ALL
+	SELECT name, salary
+	FROM contractors;
+
+	Output:
+
+		name			salary
+		John Doe		60000
+		Jane Smith		45000
+		Alice Lee		80000
+		Bob Johnson		55000
+		Alice Lee		80000
+		Charlie Brown	70000
+
+Explanation: The UNION ALL operator retains duplicate rows. "Alice Lee" appears twice in the result because she exists in both tables.
+
+
+3. Combining Different Columns
+
+	Combine the name column from employees and the department column from contractors.
+
+	Query : 
+			SELECT name
+			FROM employees
+			UNION 
+			SELECT department
+			FROM contractors;
+
+	Output:
+
+	name
+	John Doe
+	Jane Smith
+	Alice Lee
+	IT
+	Sales
+
+	Explanation: 
+		The UNION operator combines the name column from employees and the department column from contractors.
+
+		Duplicate values (if any) are removed.
+
+
+4. Combining with ORDER BY
+	Combine the name and salary columns from both tables, remove duplicates, and sort the result by salary in descending order.
+
+	Query : 
+		SELECT name, salary
+		FROM employees
+		UNION
+		SELECT name, salary
+		FROM contractors
+		order by salary desc;
+
+	Output:
+
+	name			salary
+	Alice Lee		80000
+	Charlie Brown	70000
+	John Doe		60000
+	Bob Johnson		55000
+	Jane Smith		45000
+
+
+	Explanation: 
+		The UNION operator combines the results and removes duplicates.
+
+		The ORDER BY clause sorts the final result by salary in descending order.
+
+5. Combining with LIMIT
+	Combine the name and salary columns from both tables, retain duplicates, and limit the result to 5 rows.
+
+	Query : 
+		SELECT name, salary
+		FROM employees
+		UNION ALL
+		SELECT name, salary
+		FROM contractors
+		LIMIT 5;
+
+
+	Output:
+	name		salary
+	John Doe	60000
+	Jane Smith	45000
+	Alice Lee	80000
+	Bob Johnson	55000
+	Alice Lee	80000
+
+	Explanation:
+		The UNION ALL operator combines the results and retains duplicates.
+
+		The LIMIT clause restricts the result to the first 5 rows.
+
+
+Key Notes
+	Column Matching:
+		The number of columns and their data types must match in all SELECT queries used with UNION or UNION ALL.
+
+	Performance:
+		UNION is slower than UNION ALL because it removes duplicates.
+
+	Ordering:
+		Use ORDER BY after the final SELECT statement to sort the combined result set.
+
+	Use Cases:
+		Use UNION when you need unique rows.
+
+		Use UNION ALL when duplicates are acceptable or desired.
+
+
+
+
+
+
+

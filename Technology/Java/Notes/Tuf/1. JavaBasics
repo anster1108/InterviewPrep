@@ -1,6 +1,6 @@
 Input and Output in java :
 	// using inbuilt scanner class in utils package // import java.util.Scanner;
-	Scanner sc = new Scanner(System.in);
+	Scanner sc = new Scanner(System.in); /* new Scanner(System.in) */
 	int num = sc.nextInt();
     System.out.println(num);
 
@@ -12,7 +12,7 @@ Input and Output in java :
 
     - to take the next word || number from the input space we use next
     
-    String firstName = sc.next();
+    String firstName = sc.next(); /* sc.next() */
     String lastName = sc.next();
     System.out.println(firstName+" "+lastName); // input : Shrey Khetrapal & output : Shrey Khetrapal
 
@@ -92,7 +92,7 @@ Conditional Statements :
     - nested If else
 
          /*
-            You are given 3 intyegers a, b, c
+            You are given 3 integers a, b, c
             print which of these integer is the largest
             If two or more integers are equal and are the largest, 
             the program should indicate that as well

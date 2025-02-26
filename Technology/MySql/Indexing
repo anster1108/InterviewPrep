@@ -1,0 +1,130 @@
+Indexing in MySQL
+
+Indexing is a database optimization technique used to speed up data retrieval operations. An index is a data structure (like a B-tree or hash table) that allows the database to quickly locate and access rows in a table. Without indexes, MySQL would need to perform a full table scan, which can be very slow for large tables.
+
+How Indexing Works
+	An index is created on one or more columns of a table.
+
+	When a query is executed, MySQL uses the index to quickly locate the rows that match the query conditions, instead of scanning the entire table.
+
+	Indexes are particularly useful for WHERE, JOIN, ORDER BY, and GROUP BY clauses.
+
+Types of Indexes in MySQL
+	MySQL supports several types of indexes, each suited for different use cases:
+
+		1. Primary Key Index
+			A primary key is a unique identifier for each row in a table.
+
+			It automatically creates a unique index on the column(s) defined as the primary key.
+
+			There can be only one primary key per table.
+
+			Example: CREATE TABLE users (
+					    id INT AUTO_INCREMENT PRIMARY KEY,
+					    name VARCHAR(100)
+					);
+		
+		2. Unique Index
+			Ensures that all values in the indexed column(s) are unique.
+
+			Unlike a primary key, a table can have multiple unique indexes.
+
+			Example: CREATE TABLE users (
+					    id INT AUTO_INCREMENT PRIMARY KEY,
+					    email VARCHAR(100) UNIQUE
+					);
+
+		3. Index (or Key)
+			A standard index used to speed up queries.
+
+			It does not enforce uniqueness.
+
+			Example: CREATE TABLE users (
+					    id INT AUTO_INCREMENT PRIMARY KEY,
+					    name VARCHAR(100),
+					    INDEX (name)
+					);
+		
+		4. Composite Index
+			An index on multiple columns.
+
+			Useful for queries that filter or sort by multiple columns.
+
+			Example: CREATE TABLE orders (
+					    id INT AUTO_INCREMENT PRIMARY KEY,
+					    customer_id INT,
+					    order_date DATE,
+					    INDEX (customer_id, order_date)
+					);
+
+
+Keys in MySQL
+	Keys are constraints that enforce rules on the data in a table. They are often used in conjunction with indexes.
+
+	1. Primary Key
+		Uniquely identifies each row in a table.
+
+		Automatically creates a unique index.
+
+		Example : CREATE TABLE users (
+				    id INT AUTO_INCREMENT PRIMARY KEY,
+				    name VARCHAR(100)
+				);
+
+	2. Unique Key
+		Ensures that all values in a column (or set of columns) are unique.
+
+		Automatically creates a unique index.
+
+		Example : CREATE TABLE users (
+				    id INT AUTO_INCREMENT PRIMARY KEY,
+				    email VARCHAR(100) UNIQUE
+				);
+
+	3. Foreign Key
+
+		Establishes a relationship between two tables.
+
+		Ensures referential integrity by enforcing that values in one table must exist in another table.
+
+		Example:
+			CREATE TABLE orders (
+			    id INT AUTO_INCREMENT PRIMARY KEY,
+			    customer_id INT,
+			    order_date DATE,
+			    FOREIGN KEY (customer_id) REFERENCES customers(id)
+			);
+
+	4. Composite Key
+
+		A key that consists of multiple columns.
+
+		Can be a primary key, unique key, or foreign key.
+
+		Example:
+			CREATE TABLE order_items (
+			    order_id INT,
+			    product_id INT,
+			    quantity INT,
+			    PRIMARY KEY (order_id, product_id)
+			);
+
+Creating and Managing Indexes
+	
+	1. Creating an Index
+		You can create an index using the CREATE INDEX statement or as part of the CREATE TABLE statement.
+		Example : 
+			Single-Column Index: CREATE INDEX idx_name ON users (name);
+			Composite Index: CREATE INDEX idx_name_email ON users (name, email);
+	
+	2. Dropping an Index
+		DROP INDEX idx_name ON users;
+
+	3. Viewing Indexes
+		SHOW INDEX FROM users;
+
+When to Use Indexes
+	Use indexes on columns frequently used in WHERE, JOIN, ORDER BY, and GROUP BY clauses.
+
+	Avoid over-indexing, as indexes consume storage and slow down INSERT, UPDATE, and DELETE operations.
+

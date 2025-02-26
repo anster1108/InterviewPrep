@@ -1,0 +1,81 @@
+In MySQL, the ALTER TABLE statement is used to modify the structure of an existing table. You can use it to add, delete, or modify columns, change data types, rename tables, add constraints, and more. Below are various examples of how to use ALTER TABLE in MySQL.
+
+
+1. Add a New Column
+	Query : alter table employees add column email varchar(100);
+
+2. Drop a Column
+	Query : Alter table employees drop column email;
+
+3. Modify a Column
+	Query :  ALTER TABLE employees
+			 MODIFY COLUMN salary DECIMAL(10, 2);
+
+4. Rename a Column
+	Query : ALTER TABLE employees
+			CHANGE COLUMN salary monthly_salary DECIMAL(10, 2);
+
+
+	Explanation: Renames the salary column to monthly_salary and changes its data type to DECIMAL(10, 2).
+
+5. Add a Primary Key
+	Query : ALTER TABLE employees
+			ADD PRIMARY KEY (id);
+
+6. Drop a Primary Key
+	Query : ALTER TABLE employees
+			DROP PRIMARY KEY;
+
+7. Add a Foreign Key
+	Query : ALTER TABLE employees
+			ADD CONSTRAINT fk_department
+			FOREIGN KEY (department_id) REFERENCES departments(id);
+
+	Explanation: Adds a foreign key constraint on the department_id column, referencing the id column in the departments table.
+
+8. Drop a Foreign Key
+	Query :  ALTER TABLE employees
+			 DROP FOREIGN KEY fk_department;
+
+9. Add an Index
+	Query : ALTER TABLE employees
+			ADD INDEX idx_name (name);
+
+10. Drop an Index
+	Query :  ALTER TABLE employees
+			 DROP INDEX idx_name;
+
+11. Rename a Table
+	Query : ALTER TABLE employees
+			RENAME TO staff;
+
+12. Change Table Storage Engine
+	Query :  ALTER TABLE employees
+			 ENGINE = InnoDB;
+
+13. Add a Check Constraint
+	Query : ALTER TABLE employees
+			ADD CONSTRAINT chk_salary CHECK (salary > 0);			 
+
+14. Drop a Check Constraint
+	Query : ALTER TABLE employees
+			DROP CONSTRAINT chk_salary; 
+
+15. Set Default Value for a Column
+	Query : ALTER TABLE employees
+			ALTER COLUMN salary SET DEFAULT 50000;
+
+16. Drop Default Value for a Column
+	Query : ALTER TABLE employees
+			ALTER COLUMN salary DROP DEFAULT;
+
+Key Notes
+	Data Loss: Some operations, like dropping a column or changing a column's data type, can result in data loss. Always back up your data before performing such operations.
+
+	Performance: Altering large tables can be time-consuming and may lock the table, affecting performance.
+
+	Constraints: When adding or modifying constraints, ensure that the existing data complies with the new constraints.
+
+
+
+

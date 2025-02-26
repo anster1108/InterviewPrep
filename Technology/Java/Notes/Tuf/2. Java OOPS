@@ -9,10 +9,12 @@ Access Specifiers:
 Access specifiers in Java determine the visibility and accessibility of classes, methods, and variables. The most common access specifiers are:
 
 - public [Everywhere] : When a class or method is declared as public, it is accessible from anywhere in the program.
-- private [Inside the class] : Declaring something as private restricts its access to within the class it is declared in.
-- protected [Inside the package and sub packages] : A protected entity is accessible within its own package and by subclasses.
 
-If no access specifier is used, Java assigns a default access level, known as package-private, meaning the class or method is accessible only within its own package.
+- private [Inside the class] : Declaring something as private restricts its access to within the class it is declared in. No other class, not even a subclass or a class in the same package, can access them.
+
+- protected [Inside the package and sub packages] : A protected entity is accessible within its own package and by subclasses. By subclasses (even if they are in a different package).
+
+If no access specifier is used, Java assigns a default access level, known as package-private, meaning the class or method is accessible only within its own package. Within the same class. Within all classes in the same package.
 
 - public static void main
 	
@@ -34,6 +36,12 @@ If no access specifier is used, Java assigns a default access level, known as pa
 	void: This represents the return type of the main method. It is kept void if nothing is returned from the function.
 
 	String[] args: This is required to store the Command Line Inputs (if passed) when executing the JAVA program using a Command Line.
+		If you run your program like this: java MyProgram arg1 arg2 arg3
+		Then:
+
+		args[0] will contain "arg1"
+		args[1] will contain "arg2"
+		args[2] will contain "arg3"
 
 	Statement: A statement to print "Hello World" is added inside the main method.
 

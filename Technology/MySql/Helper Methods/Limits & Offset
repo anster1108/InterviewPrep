@@ -1,0 +1,133 @@
+In MySQL, the LIMIT and OFFSET clauses are used to control the number of rows returned by a query and to skip a specified number of rows, respectively. These clauses are particularly useful for pagination or when you only need a subset of rows from a large result set.
+
+Syntax : SELECT column1, column2, ...
+			FROM table_name
+			LIMIT number_of_rows OFFSET offset_value;
+
+		- LIMIT number_of_rows: Specifies the maximum number of rows to return.
+
+		- OFFSET offset_value: Specifies the number of rows to skip before starting to return rows.
+
+Alternatively, you can use the shorthand syntax:
+	SELECT column1, column2, ...
+	FROM table_name
+	LIMIT offset_value, number_of_rows;
+
+	- offset_value: The number of rows to skip.
+
+	- number_of_rows: The maximum number of rows to return.
+
+Examples
+	Table: employees
+		id	name			salary	department
+		1	John Doe		60000	Sales
+		2	Jane Smith		45000	HR
+		3	Alice Lee		80000	Sales
+		4	Bob Johnson		55000	IT
+		5	Charlie Brown	70000	IT
+		6	David White		48000	HR
+		7	Eve Black		90000	Sales
+
+
+1. Basic LIMIT : Retrieve the first 3 rows from the employees table.
+
+	Query : SELECT name, salary FROM employees LIMIT 3;
+
+	Output:
+		name		salary
+		John Doe	60000
+		Jane Smith	45000
+		Alice Lee	80000
+
+Explanation: The query returns the first 3 rows from the table.
+
+2. LIMIT with OFFSET
+	Retrieve rows 4 to 6 from the employees table.
+
+	Query : SELECT name, salary FROM employees LIMIT 3 OFFSET 3;
+
+	Output:
+		name			salary
+		Bob Johnson		55000
+		Charlie Brown	70000
+		David White		48000
+
+	Explanation:
+		OFFSET 3 skips the first 3 rows.
+
+		LIMIT 3 returns the next 3 rows.
+
+3. Shorthand Syntax
+	Retrieve rows 4 to 6 using the shorthand syntax.
+
+	Query : SELECT name, salary FROM employees LIMIT 3, 3;
+
+	Output:
+		name			salary
+		Bob Johnson		55000
+		Charlie Brown	70000
+		David White		48000
+
+	Explaination : LIMIT 3, 3 is equivalent to LIMIT 3 OFFSET 3.
+
+4. Pagination Example
+	Retrieve the second page of results (rows 4 to 6) for a paginated display.
+
+	Query : SELECT name, salary FROM employees LIMIT 3 OFFSET 3;
+
+	Output:
+		name			salary
+		Bob Johnson		55000
+		Charlie Brown	70000
+		David White		48000
+
+	Explaination : This is useful for displaying data in chunks (e.g., 3 rows per page).
+
+5. LIMIT with ORDER BY
+	Retrieve the top 3 highest-paid employees
+
+	Query : SELECT name, salary FROM employees
+			ORDER BY salary DESC LIMIT 3;
+
+	Output :
+
+		name			salary
+		Eve Black		90000
+		Alice Lee		80000
+		Charlie Brown	70000
+
+	Explanation:
+
+		- The query first sorts the rows by salary in descending order.
+
+		- Then, it returns the top 3 rows.
+
+Key Notes
+	LIMIT: 
+		- Controls the number of rows returned.
+
+		- If the number of rows requested exceeds the available rows, all remaining rows are returned.
+
+	OFFSET: 
+		- Skips a specified number of rows before returning results.
+
+		- Useful for pagination or skipping unwanted rows.
+
+	Order Matters: 
+		- Always use ORDER BY with LIMIT and OFFSET to ensure consistent results, especially in pagination.
+
+	Performance: 
+		- Using LIMIT and OFFSET on large tables can be slow if the OFFSET value is large, as MySQL must scan and skip many rows.
+
+
+*** 
+	LIMIT with OFFSET : If the OFFSET value skips all available rows, MySQL returns an empty result set.
+
+		Query :  SELECT name, salary FROM employees LIMIT 3 OFFSET 10;
+
+		Output : Empty table
+
+
+
+
+

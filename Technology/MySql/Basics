@@ -1,0 +1,211 @@
+- CURRENT_DATE() : "YYYY-MM-DD" => "0000-00-00" 
+
+- Connection via Terminal : mysql -h localhost -u root -p
+
+- Show databse : SHOW DATABASES;
+
+- Create Database : CREATE DATABASE IF NOT EXIST support;
+
+- Drop Database :  DROP DATABASE support;
+
+- Access database : USE support;
+
+- Show tables : SHOW TABLES;
+
+- Create table :
+				CREATE TABLE users (
+				    id INT AUTO_INCREMENT PRIMARY KEY,
+				    name VARCHAR(100) NOT NULL,
+				    address VARCHAR(255),
+				    gender ENUM('Male', 'Female', 'Other') NOT NULL,
+				    birthdate DATE NOT NULL,
+				    county VARCHAR(100),
+				    email VARCHAR(100) NOT NULL UNIQUE,
+				    password VARCHAR(255) NOT NULL
+				);
+
+	- id: This is the primary key of the table. It is an integer (INT) and will auto-increment (AUTO_INCREMENT) with each new record.
+	- gender: An enumeration (ENUM) that allows only specific values: 'Male', 'Female', or 'Other'. It cannot be null.
+	- The email column is marked as UNIQUE to ensure that no two users can have the same email address.
+
+- Data Types :
+	Numeric Data Types
+		INT: A standard integer (4 bytes). Range: -2,147,483,648 to 2,147,483,647.
+
+		TINYINT: A very small integer (1 byte). Range: -128 to 127 (signed) or 0 to 255 (unsigned).
+
+		SMALLINT: A small integer (2 bytes). Range: -32,768 to 32,767.
+
+		BIGINT: A large integer (8 bytes). Range: -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
+
+		FLOAT: A single-precision floating-point number (4 bytes). Approximate range: -3.402823466E+38 to 3.402823466E+38.
+
+		DOUBLE: A double-precision floating-point number (8 bytes). Approximate range: -1.7976931348623157E+308 to 1.7976931348623157E+308.
+
+		DECIMAL(M, D): A fixed-point number. M is the total number of digits, and D is the number of digits after the decimal point. Example: DECIMAL(5, 2) can store numbers like 123.45.
+
+	String Data Types
+		VARCHAR(N): A variable-length string. N is the maximum number of characters (up to 65,535 bytes). Example: VARCHAR(100).
+
+		CHAR(N): A fixed-length string. N is the number of characters (up to 255). Example: CHAR(10).
+
+		TEXT: A string with a maximum length of 65,535 characters.
+
+		TINYTEXT: A string with a maximum length of 255 characters.
+
+		MEDIUMTEXT: A string with a maximum length of 16,777,215 characters.
+
+		LONGTEXT: A string with a maximum length of 4,294,967,295 characters.
+
+		ENUM: A string object with a predefined list of values. Example: ENUM('Male', 'Female', 'Other').
+
+		SET: A string object that can have zero or more values from a predefined list. Example: SET('Red', 'Green', 'Blue').
+
+	Date and Time Data Types
+
+		DATE: Stores a date in the format YYYY-MM-DD. Example: 2023-10-05.
+
+		TIME: Stores a time in the format HH:MM:SS. Example: 14:30:00.
+
+		DATETIME: Stores both date and time in the format YYYY-MM-DD HH:MM:SS. Example: 2023-10-05 14:30:00.
+
+		TIMESTAMP: Stores the number of seconds since the Unix epoch (1970-01-01 00:00:00 UTC). Automatically updates when the row is modified.
+
+		YEAR: Stores a year in 2-digit or 4-digit format. Example: 2023.
+
+
+	Binary Data Types : Used for storing binary data (e.g., images, files).
+
+		BLOB: A binary large object with a maximum size of 65,535 bytes.
+
+		TINYBLOB: A binary large object with a maximum size of 255 bytes.
+
+		MEDIUMBLOB: A binary large object with a maximum size of 16,777,215 bytes.
+
+		LONGBLOB: A binary large object with a maximum size of 4,294,967,295 bytes.
+
+		BINARY(N): A fixed-length binary string. N is the number of bytes.
+
+		VARBINARY(N): A variable-length binary string. N is the maximum number of bytes.
+
+	Boolean Data Type
+	 
+	 	BOOLEAN or BOOL: An alias for TINYINT(1). 0 represents false, and 1 represents true.
+
+- DATETIME Vs TIMESTAMP 
+	
+Feature								DATETIME											TIMESTAMP
+Range				1000-01-01 00:00:00 to 9999-12-31 23:59:59			1970-01-01 00:00:01 UTC to 2038-01-19 03:14:07 UTC
+Storage								8 bytes												4 bytes
+Time Zone			No time zone support (timezone-independent)	     Converts stored values to/from UTC based on the server's time zone
+Automatic Updates	                  No 								Can automatically update on row modification (if configured)
+Default Value		No automatic default value							Can automatically set to the current timestamp
+
+
+	When to Use Which?
+		Use DATETIME when:
+
+			You need a wider range of dates (e.g., historical or future dates beyond 2038).
+
+			You don't want automatic time zone conversion.
+
+		Use TIMESTAMP when:
+
+			You need automatic time zone conversion.
+
+			You want to save storage space (4 bytes vs 8 bytes).
+
+			You need automatic updates for "last modified" timestamps.
+
+	Default Values :
+		DATETIME:
+
+			No automatic default value (defaults to NULL unless explicitly defined).
+
+			Use DEFAULT to set a specific default value.
+
+		TIMESTAMP:
+
+			Automatically defaults to CURRENT_TIMESTAMP for the first TIMESTAMP column.Additional TIMESTAMP columns will default to '0000-00-00 00:00:00' unless explicitly configured otherwise.
+
+			Supports automatic updates with ON UPDATE CURRENT_TIMESTAMP.
+
+	Summary
+		DATETIME is timezone-independent and has a wider range.
+
+		TIMESTAMP is timezone-aware, uses less storage, and supports automatic updates.
+
+		Use DATETIME for historical or future dates beyond 2038.
+
+		Use TIMESTAMP for timezone-sensitive data or automatic updates.
+
+
+- Timestamp to currrent timstamp and on update update to current timestamp
+	CREATE TABLE logs (
+	    id INT AUTO_INCREMENT PRIMARY KEY,
+	    message VARCHAR(255),
+	    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,          -- Set to current timestamp on insert
+	    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  -- Auto-update on modification
+	);
+
+- Update a value of a column 
+	
+	UPDATE users set name = "John" where id = 1;
+
+- Table Rename : In MySQL, you can rename a table using the RENAME TABLE statement or the ALTER TABLE statement. Both methods achieve the same result. Below are examples of how to use each:
+
+	1. using RENAME TABLE
+		RENAME TABLE users TO customers;
+		RENAME TABLE users TO customers, orders TO transactions, products TO items;
+
+	2. Using ALTER TABLE
+		ALTER TABLE users RENAME TO customers;
+
+- Drop Table :
+	DROP TABLE users;
+
+- Add new Column 
+	ALTER TABLE customers ADD COLUMN city VARCHAR(100) NOT NULL;
+
+- Rename Existing Column
+	ALTER TABLE customers CHANGE COLUMN address location VARCHAR(255);
+
+- Drop a column
+
+
+- Delete a value from a table
+
+	DELETE: Removes rows one by one and can be used with a WHERE clause to delete specific rows.
+		DELETE FROM customers WHERE id = 2;
+
+	TRUNCATE: Removes all rows from a table at once and resets auto-increment values. It is faster than DELETE but cannot be used with a WHERE clause.
+		TRUNCATE TABLE customers;
+
+- Count : select count(*) from customers;
+
+- MIN : SELECT MIN(salary) AS min_salary FROM employees;
+
+- MAX : SELECT MAX(salary) AS min_salary FROM employees;
+
+- LIMIT : SELECT name, email FROM customers LIMIT 5;
+
+- BETWEEN : SELECT name, salary FROM employees WHERE salary BETWEEN 30000 AND 50000;
+
+- IS NULL : SELECT name, email FROM customers WHERE email IS NULL;
+
+- IS NOT NULL : SELECT COUNT(location) AS customers_with_location FROM customers WHERE location IS NOT NULL;
+
+- LIKE : It is commonly used for pattern matching with strings. The LIKE keyword supports two wildcard characters:
+	1. %: Matches zero or more characters.
+		SELECT name, email FROM customers WHERE name LIKE 'J%';  // 'J%' matches any string that starts with J.
+
+		SELECT name, email FROM customers WHERE name LIKE '%oh%'; // Find all customers whose names contain oh.
+
+	2. _: Matches exactly one character.
+
+		SELECT name, email FROM customers WHERE name LIKE '_a%'; // Find all customers whose names have a as the second character.
+
+
+
+
+

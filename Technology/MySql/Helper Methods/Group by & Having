@@ -1,0 +1,178 @@
+In MySQL, the GROUP BY clause is used to group rows that have the same values in specified columns into summary rows. The HAVING clause is used to filter groups based on a condition. Unlike the WHERE clause, which filters rows before grouping, HAVING filters groups after the GROUP BY operation.
+
+
+Syntax : 
+	SELECT column1, aggregate_function(column2)
+	FROM table_name
+	GROUP BY column1
+	HAVING condition;
+
+Examples
+Table: employees
+	id	name			salary	department
+	1	John Doe		60000	Sales
+	2	Jane Smith		45000	HR
+	3	Alice Lee		80000	Sales
+	4	Bob Johnson		55000	IT
+	5	Charlie Brown	70000	IT
+	6	David White		48000	HR
+	7	Eve Black		90000	Sales
+
+1. Basic GROUP BY
+	Group employees by department and count the number of employees in each department.
+
+	Query : select department, count(*) as employee_count from employees
+			group by departments;
+
+	Output:
+
+	department	employee_count
+	Sales			3
+	HR				2
+	IT				2
+
+	Explanation: The query groups rows by department and counts the number of employees in each group.	
+
+
+2. GROUP BY with SUM
+	Calculate the total salary for each department.
+
+	Query : select department, sum(salary) as total_salary from employees
+			group by department;
+
+	Output:
+
+	department	total_salary
+	Sales		230000
+	HR			93000
+	IT			125000
+
+	Explanation: The query groups rows by department and calculates the sum of salary for each group.
+
+3. GROUP BY with AVG
+	Calculate the average salary for each department.
+
+	Query : 
+		SELECT department, AVG(salary) AS average_salary
+		FROM employees
+		GROUP BY department;
+
+	Output:
+
+	department	average_salary
+	Sales		76666.67
+	HR			46500.00
+	IT			62500.00
+
+	Explanation: The query groups rows by department and calculates the average salary for each group.
+
+4. GROUP BY with MIN and MAX
+Find the minimum and maximum salary for each department.
+
+	Query : 
+		SELECT department, MIN(salary) AS min_salary, MAX(salary) AS max_salary
+		FROM employees
+		GROUP BY department;
+
+	Output:
+		department	min_salary	max_salary
+		Sales		60000	90000
+		HR			45000	48000
+		IT			55000	70000
+
+	Explanation: The query groups rows by department and finds the minimum and maximum salary for each group.
+
+5. HAVING with COUNT
+Find departments with more than 2 employees.
+
+	Query : SELECT department, COUNT(*) AS employee_count
+			FROM employees
+			GROUP BY department
+			HAVING employee_count > 2;
+
+	Output:
+		department	employee_count
+		Sales		3
+
+	Explanation: The query groups rows by department and filters groups where the count of employees is greater than 2.
+
+
+6. HAVING with SUM
+	Find departments where the total salary is greater than 100,000.
+
+	Query : SELECT department, SUM(salary) AS total_salary
+			FROM employees
+			GROUP BY department
+			HAVING total_salary > 100000;
+
+	Output:
+
+	department	total_salary
+	Sales		230000
+	IT			125000
+
+	Explaination : The query groups rows by department and filters groups where the total salary is greater than 100,000.
+
+7. HAVING with AVG
+	Find departments where the average salary is greater than 50,000.	
+
+	Query:
+		SELECT department, AVG(salary) AS average_salary
+		FROM employees
+		GROUP BY department
+		HAVING average_salary > 50000;
+
+	Output:
+
+	department	average_salary
+	Sales		76666.67
+	IT			62500.00
+
+	Explanation: The query groups rows by department and filters groups where the average salary is greater than 50,000.
+
+8. GROUP BY with Multiple Columns
+	Group employees by department and salary to find unique salary-department combinations.	
+
+	Query:
+		SELECT department, salary
+		FROM employees
+		GROUP BY department, salary;
+
+
+	Output:
+
+		department	salary
+		Sales		60000
+		HR			45000
+		Sales		80000
+		IT			55000
+		IT			70000
+		HR			48000
+		Sales		90000
+
+	Explanation: The query groups rows by both department and salary, showing unique combinations.
+
+Key Notes
+	GROUP BY:
+
+		Groups rows based on the specified columns.
+
+		Often used with aggregate functions like COUNT, SUM, AVG, MIN, and MAX.
+
+	HAVING:
+
+		Filters groups after the GROUP BY operation.
+
+		Used to apply conditions on aggregated data.
+
+	Order of Execution:
+
+		WHERE filters rows before grouping.
+
+		GROUP BY groups the filtered rows.
+
+		HAVING filters the groups.
+
+		SELECT returns the final result.
+
+

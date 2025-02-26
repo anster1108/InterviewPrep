@@ -1,0 +1,73 @@
+In MySQL, conditional functions like IF, IFNULL, IS NULL, and NULLIF are used to handle conditional logic and manage NULL values in queries. Below is a detailed explanation of each function, along with examples.
+
+1. IF Function : The IF function is a conditional function that returns one value if a condition is TRUE and another value if the condition is FALSE.
+
+	Syntax: IF(condition, value_if_true, value_if_false)
+
+	Example : select name, salary, IF(salary > 50000, 'High', 'Low') as salary_category
+				FROM employees;
+
+	Output:
+
+		name		salary	salary_category
+		John Doe	60000	High
+		Jane Smith	45000	Low
+		Alice Lee	80000	High
+
+2. IFNULL : The IFNULL function returns the first argument if it is not NULL; otherwise, it returns the second argument.
+
+	Syntax: IFNULL(expression, value_if_null)
+
+	Example : Select name, salary, IFNULL(email, 'No Email') as Email
+				FROM employees;
+
+	Output:
+	name		email
+	John Doe	john@example.com
+	Jane Smith	No Email
+	Alice Lee	alice@example.com
+
+3. IS NULL : The IS NULL operator checks if a value is NULL.
+	
+	Syntax : IS NULL expression
+
+	Example : Select name from employees
+				where email IS NULL;
+
+	Output:
+			name
+			Jane Smith
+
+4. NULLIF : The NULLIF function compares two expressions and returns NULL if they are equal; otherwise, it returns the first expression.
+
+	Syntax: NULLIF(expression1, expression2)
+
+	Example : SELECT name, NULLIF(salary, 0) AS salary
+				FROM employees;
+
+	Output:
+		name		salary
+		John Doe	60000
+		Jane Smith	45000
+		Alice Lee	80000
+	
+	Explanation:
+
+		- If salary is 0, return NULL.
+
+		- Otherwise, return the value of salary.
+
+Comparison of Functions
+
+	-----------------------------------------------------------------------------------------------------------------------------------
+	Function |	Purpose																		 |	Example
+	-----------------------------------------------------------------------------------------------------------------------------------
+	IF		 |	Returns one value if a condition is TRUE, otherwise returns another.		 |	IF(salary > 50000, 'High', 'Low')
+
+	IFNULL	 |	Returns the first argument if it is not NULL, otherwise returns the second.	 |	IFNULL(email, 'No Email')
+	
+	IS NULL	 |	Checks if a value is NULL.													 |	email IS NULL
+	
+	NULLIF	 |	Returns NULL if two expressions are equal, otherwise returns the first.		 |	NULLIF(salary, 0)
+
+

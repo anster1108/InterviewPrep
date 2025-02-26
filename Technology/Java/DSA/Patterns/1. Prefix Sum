@@ -74,7 +74,7 @@ LeetCode Problem :
 
 
 	Q) [560] SubArray Sum Equals K
-		Given an integer array numsand an integer K, return the number of subarrays whose sum equlas to k.
+		Given an integer array nums and an integer K, return the number of subarrays whose sum equlas to k.
 
 		Brute : O(n^2), going to every elment/subarray and checking for sum of k.
 
@@ -111,7 +111,7 @@ LeetCode Problem :
 
 					HashMap<Integer, Integer> prefixSumFrequency = new HashMap<>();
 
-					prefixSumFrequescy(0, 1);
+					prefixSumFrequency.put(0, 1);
 					for(int num : nums){
 						prefixSum = prefixSum + num;
 						if(prefixSumFrequency.contains(prefixSum - k)){
