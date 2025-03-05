@@ -50,6 +50,14 @@ A. List [ Interface ]: A List is an ordered collection that allows duplicate ele
 	arraylist.contains("Apple") // true
 	arraylist.contains("Appleee") // false
 
+	Methods :
+		- .add()
+		- .size()
+		- .get()
+		- .remove()
+		- .clear()
+		- .contains()
+
  ii. LinkedList [ class ] : LinkedList is a doubly linked list implementation of the List interface. It provides fast insertions and deletions but slower random access compared to ArrayList.
 
 	List<String> linkedList = new LinkedList<>();
@@ -65,6 +73,16 @@ A. List [ Interface ]: A List is an ordered collection that allows duplicate ele
 	linkedList.size(); // 2
 	linkedList.contains("Dog"); // true
 
+	Method :
+		- .add()
+		- .size()
+		- .addFirst()
+		- .addLast()
+		- .removeFirst()
+		- .removeLast()
+		- .getFirst()
+		- .getlast()
+		- .contains()
 
  iii. Stack [ class ] : Stack is a subclass of Vector that implements a last-in, first-out (LIFO) stack of elements. It provides typical stack operations like push() and pop().
 
@@ -75,6 +93,13 @@ A. List [ Interface ]: A List is an ordered collection that allows duplicate ele
 	System.out.println(stack.pop()); // Output: 2 // It removes the last inserted element
 	System.out.println(stack.size()); // Output: 1
 	System.out.println(stack.isEmpty()); // Output: false
+
+	Method :
+		- .push()
+		- .pop()
+		- .peek()
+		- .size()
+		- .isEmpty()
 
  iv. Vector [ class ] : Vector is similar to ArrayList but is synchronized, meaning it is thread-safe for multi-threaded environments.
 
@@ -111,6 +136,10 @@ B. Set [ Interface ] : A Set is a collection that does not allow duplicate eleme
 		System.out.println(st);
 	}
 
+	Method:
+		- .add()
+		- .remove()
+
  ii. TreeSet [ class ] : TreeSet is an implementation of the Set interface that stores elements in a sorted order using a red-black tree. The elements are sorted based on their natural ordering or a custom comparator.
 
 	Set<String> treeSet = new TreeSet<>();
@@ -124,7 +153,7 @@ C. Queue [ Interface ] : A Queue is a collection that follows the first-in, firs
 
  i. ArrayQueue : Java doesn’t have a direct ArrayQueue, but you can implement a queue using an ArrayList. Alternatively, you can use LinkedList as a queue.
 
- ii. ArrayDeque : it a two ended stuff, you can insert/offer from first as weel as from last
+ ii. ArrayDeque : it a two ended stuff, you can insert/offer from first as well as from last
 
         Queue<Integer> arrDq = new ArrayDeque<>();
         arrDq.offer(1);
@@ -139,6 +168,12 @@ C. Queue [ Interface ] : A Queue is a collection that follows the first-in, firs
         System.out.println(arrDq.peek()); // 5
         System.out.println(arrDq.size()); // 4
 
+        Method :
+        	- .offer()
+        	- .peek()
+        	- .poll()
+        	- .size()
+
  iii. LinkedList (as Queue) : LinkedList can be used as a queue since it implements both the List and Queue interfaces.
 
 	Queue<String> queue = new LinkedList<>();
@@ -148,7 +183,7 @@ C. Queue [ Interface ] : A Queue is a collection that follows the first-in, firs
 
  iv. PriorityQueue [ Min Heap ] : PriorityQueue is a queue that orders elements according to their natural ordering or a custom comparator. Elements with higher priority are processed first.
 
- 	- If wee peek in priority queue we will get the smallest element
+ 	- If we peek in priority queue we will get the smallest element
 
 	PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
 	priorityQueue.add(10);
@@ -173,6 +208,10 @@ C. Queue [ Interface ] : A Queue is a collection that follows the first-in, firs
 	System.out.println(hashMap); // Output: {Banana=20}
 	System.out.println(hashMap.get("Banana")); // null
 
+		Method :
+			- .put()
+			- .get()
+			- .remove()
  
  b. TreeMap : TreeMap is a red-black tree-based implementation of the Map interface. It stores entries in sorted order based on keys.
 
@@ -207,7 +246,7 @@ C. Queue [ Interface ] : A Queue is a collection that follows the first-in, firs
 		    }
 		});
 
-	Example 2: If we want ot sor the list in the descending order
+	Example 2: If we want to sort the list in the descending order
 
 		Collections.sort(list, new Comparator<Integer>(){
 			@Override

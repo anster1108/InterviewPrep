@@ -2,7 +2,7 @@ Top K elements :  A super useful pattern to find the K largest/smallest/frequent
 
 [Brute Force] A stright forward solution to such problems is to sort the data set and take the first/last K element. [sorting : O(nlogn)]
 
-By this pattern we cancovert the complexity from O(nlogn) to O(nlogk).
+By this pattern we can convert the complexity from O(nlogn) to O(nlogk).
 
 When to Use this Pattern :
  	Finding the Kth Largest or smallest element in an array.

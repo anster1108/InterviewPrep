@@ -1,0 +1,357 @@
+Q. What is MySQL, and what are its key features?
+Answer: MySQL is an open-source relational database management system (RDBMS) that uses Structured Query Language (SQL) to manage and manipulate data.
+
+Key Features:
+
+	Supports ACID (Atomicity, Consistency, Isolation, Durability) properties.
+
+	Provides high performance and scalability.
+
+	Supports multiple storage engines (e.g., InnoDB, MyISAM).
+
+	Offers robust security features (e.g., encryption, user authentication).
+
+	Cross-platform compatibility (works on Windows, Linux, macOS).
+
+Q. What is the difference between CHAR and VARCHAR data types?
+Answer:
+
+	CHAR:
+
+		Fixed-length string.
+
+		Uses the same amount of storage for all values, padding with spaces if necessary.
+
+		Faster for fixed-length data (e.g., country codes).
+
+	VARCHAR:
+
+		Variable-length string.
+
+		Uses storage based on the actual length of the data.
+
+		More space-efficient for variable-length data (e.g., names, addresses).
+
+Q. What is the difference between DELETE, TRUNCATE, and DROP?
+Answer:
+
+	DELETE:
+
+		Removes rows one by one from a table.
+
+		Can use a WHERE clause to filter rows.
+
+		Does not reset auto-increment values.
+
+		Can be rolled back (if used within a transaction).
+
+	TRUNCATE:
+
+		Removes all rows from a table at once.
+
+		Cannot use a WHERE clause.
+
+		Resets auto-increment values.
+
+		Cannot be rolled back.
+
+	DROP:
+
+		Deletes the entire table structure and data.
+
+		Cannot be rolled back.
+
+Q. What is a primary key, and how is it different from a unique key?
+Answer:
+
+	Primary Key:
+
+		Uniquely identifies each row in a table.
+
+		Cannot contain NULL values.
+
+		Only one primary key is allowed per table.
+
+	Unique Key:
+
+		Ensures all values in a column are unique.
+
+		Can contain NULL values (only one NULL is allowed per column).
+
+		Multiple unique keys are allowed per table.
+
+Q. What is a foreign key, and how does it enforce referential integrity?
+Answer:
+
+	A foreign key is a column or set of columns in a table that refers to the primary key of another table.
+
+	It enforces referential integrity by ensuring that:
+
+		The value in the foreign key column must exist in the referenced primary key column.
+
+		Prevents orphaned records (e.g., deleting a parent record without deleting child records).
+
+Q. What are indexes, and how do they improve query performance?
+Answer:
+
+	Indexes are data structures that allow faster retrieval of rows from a table.
+
+	They improve query performance by reducing the number of rows MySQL needs to scan.
+
+	Types of Indexes:
+
+		Primary Key Index
+
+		Unique Index
+
+		Composite Index
+
+		Full-Text Index
+
+		Spatial Index
+
+	Trade-off: Indexes improve read performance but slow down write operations (INSERT, UPDATE, DELETE) because the index must be updated.
+
+Q. What is the difference between INNER JOIN and LEFT JOIN?
+Answer:
+
+	INNER JOIN:
+
+		Returns only the rows that have matching values in both tables.
+
+		Non-matching rows are excluded.
+
+	LEFT JOIN:
+
+		Returns all rows from the left table and the matching rows from the right table.
+
+		If there is no match, NULL values are returned for columns from the right table.
+
+Q. What is a stored procedure, and how is it different from a function?
+Answer:
+
+	Stored Procedure:
+
+		A precompiled set of SQL statements stored in the database.
+
+		Can perform multiple operations (e.g., SELECT, INSERT, UPDATE, DELETE).
+
+		Does not return a value (but can use OUT parameters).
+
+		Called using CALL.
+
+	Function:
+
+		A precompiled SQL statement that returns a single value.
+
+		Can be used in SQL queries (e.g., SELECT, WHERE).
+
+		Called directly in SQL expressions.
+
+
+Q. What is normalization, and what are its benefits?
+Answer:
+
+	Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity.
+
+		Normal Forms:
+
+			1NF: Eliminate duplicate columns and ensure atomicity.
+
+			2NF: Remove partial dependencies (all non-key columns depend on the entire primary key).
+
+			3NF: Remove transitive dependencies (non-key columns depend only on the primary key).
+
+	Benefits:
+
+		Reduces data redundancy.
+
+		Improves data integrity.
+
+		Simplifies database design.
+
+Q. How do you optimize a slow-performing query in MySQL?
+Answer:
+
+	Steps to Optimize:
+
+		Use EXPLAIN to analyze the query execution plan.
+
+		Add indexes on columns used in WHERE, JOIN, and ORDER BY clauses.
+
+		Avoid using SELECT *; specify only the required columns.
+
+		Optimize subqueries and avoid nested queries.
+
+		Use LIMIT to restrict the number of rows returned.
+
+		Normalize the database schema to reduce redundancy.
+
+		Use caching mechanisms (e.g., query cache, application-level caching).
+
+		Partition large tables to improve query performance.
+
+Q. What is a transaction, and how do you ensure ACID properties in MySQL?
+Answer:
+
+	A transaction is a sequence of SQL operations executed as a single unit of work.
+
+	ACID Properties:
+
+		Atomicity: Ensures all operations in a transaction are completed successfully or none are applied.
+
+		Consistency: Ensures the database remains in a valid state before and after the transaction.
+
+		Isolation: Ensures concurrent transactions do not interfere with each other.
+
+		Durability: Ensures committed transactions are permanently saved, even in case of system failure.
+
+	Use BEGIN, COMMIT, and ROLLBACK to manage transactions.
+
+Q. What is the difference between GROUP BY and HAVING?
+Answer:
+
+	GROUP BY:
+
+		Groups rows that have the same values in specified columns.
+
+		Used with aggregate functions (e.g., COUNT, SUM, AVG).
+
+	HAVING:
+
+		Filters groups based on a condition.
+
+		Applied after GROUP BY.
+
+Q. What is the difference between UNION and UNION ALL?
+Answer:
+
+	UNION:
+
+		Combines the results of two or more SELECT queries.
+
+		Removes duplicate rows.
+
+	UNION ALL:
+
+		Combines the results of two or more SELECT queries.
+
+		Retains duplicate rows.
+
+Q. How do you handle NULL values in MySQL?
+Answer:
+
+	Use IS NULL to check for NULL values.
+
+	Use IS NOT NULL to check for non-NULL values.
+
+	Use IFNULL() or COALESCE() to replace NULL values with a default value.
+
+Q. Write a query to retrieve the name and salary of all employees from the employees table where the salary is greater than 50,000.
+
+Answer: SELECT name, salary FROM employees
+		WHERE salary > 50000;
+
+Q. Write a query to count the number of employees in each department from the employees table. Display the department and the count of employees.
+
+Answer: SELECT department, COUNT(*) AS employee_count FROM employees
+		GROUP BY department;
+
+Q. Write a query to calculate the average salary for each department from the employees table. Display the department and the average salary.
+
+Answer: SELECT department, AVG(salary) AS average_salary FROM employees
+		GROUP BY department;
+
+Q. Write a query to retrieve the name and salary of the employee(s) with the highest salary from the employees table.
+
+Answer: SELECT name, salary FROM employees
+		ORDER BY salary DESC LIMIT 1;
+
+Q. Write a query to retrieve the name and join_date of employees who joined in the last 30 days from the employees table. Assume the join_date column is of type DATE.
+
+Answer: select name, join_date from employees
+		where join_date >= DATE_SUB(CURDATE() , INTERVAL 30 Day);
+
+Q. Write a query to retrieve the name and salary of the top 3 highest-paid employees from the employees table.
+
+Answer: SELECT name, salary FROM employees
+		ORDER BY salary DESC LIMIT 3;
+
+Q. Write a query to find the second highest salary from the employees table.
+
+Answer: Select salary from employees order by salary desc limit 1 offset 1;
+
+Q. Write a query to retrieve the name, salary, and department of employees whose salary is greater than the average salary of their respective department.
+
+Answer: SELECT e.name, e.salary, e.department
+		FROM employees e
+		WHERE e.salary > (SELECT AVG(salary)
+		                  FROM employees
+		                  WHERE department = e.department);
+
+		or
+
+		SELECT e.name, e.salary, e.department
+		FROM employees e
+		JOIN ( select deptartment, AVG(Salary) AS AvgSalary from employees
+				group by department
+		) avg_dept on e.department = avg_dept.department
+		where e.salary > avg_dept.AvgSalary; 
+
+Q. Write a query to rank employees by their salary within each department. Display the name, salary, department, and rank.
+
+Ans. SELECT name, salary, department, RANK() OVER(PARTITION BY department ORDER BY salary desc) as salary_rank
+	 from employees;
+
+Q. Write a query to find employees who have the same salary. Display the name, salary, and the count of employees with the same salary.
+
+Ans. select e.name, e.salary, t.salary_count from employees e
+	join(select salary, count(*) as salary_count from emloyees
+		group by salary having salary_count > 1) t 
+		ON e.salary = t.salary;
+
+Q. Write a query to calculate the cumulative salary for each employee, ordered by their id. Display the id, name, salary, and cumulative salary.
+
+Ans. SELECT id, name, salary,
+       SUM(salary) OVER (ORDER BY id) AS cumulative_salary FROM employees;
+
+Q. Write a query to find employees who have never been assigned to a project. Assume there is a projects table with a foreign key employee_id referencing the employees table.
+
+ans. select e.name from employees e 
+	LEFT JOIN project p on p.employee_id = e.id where p.employee_id is null;
+
+Q. Write a query to retrieve the top 3 departments with the highest total salary. Display the department and the total salary.
+
+ans. select department, SUM(salary) AS total_salary
+		FROM employees
+		GROUP BY department
+		ORDER BY total_salary DESC LIMIT 3;
+
+Q. Write a query to find employees whose salary is in the top 10% of their department.
+
+ans. SELECT name, salary, department
+		FROM (SELECT name, salary, department,
+		             PERCENT_RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS percentile
+		      FROM employees) t
+		WHERE percentile <= 0.1;
+
+Explanation:
+
+	The PERCENT_RANK() window function calculates the percentile rank of each employee's salary within their department.
+
+	The outer query filters employees whose percentile rank is less than or equal to 0.1 (top 10%).
+
+Q. Write a query to find employees who share the same name but have different ids.
+
+ans. SELECT e1.name, e1.id, e2.id FROM employees e1
+		JOIN employees e2 ON e1.name = e2.name AND e1.id <> e2.id;
+
+Q. Write a query to calculate the difference between each employee's salary and the average salary of their department. Display the name, salary, department, and the difference.
+
+ans. SELECT name, salary, department,
+       salary - AVG(salary) OVER (PARTITION BY department) AS salary_difference FROM employees;
+
+
+
+
+
